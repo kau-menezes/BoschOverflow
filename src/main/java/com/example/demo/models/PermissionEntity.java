@@ -10,19 +10,18 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table( name = "tbPermission") //  mudando o nome da tabela 
+@Table( name = "tbPermission") // Mudando o nome da tabela 
 public class PermissionEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long permissionId;
 
-    public Long getId() {
-        return id;
+    public Long getPermissionId() {
+        return permissionId;
     }
 
     @OneToOne
-    // @PrimaryKeyJoinColumn
     @JoinColumn(name = "space_id")
     private SpaceEntity spaceId;
 
@@ -31,7 +30,6 @@ public class PermissionEntity {
     }
 
     @OneToOne
-    // @PrimaryKeyJoinColumn
     @JoinColumn(name = "user_id")
     private UserEntity userId;
 
@@ -40,7 +38,7 @@ public class PermissionEntity {
     }
 
     @Column
-    private Integer permission;  // LER A DOCUMENTAÇÃO PARA ENTENDER O QUE É CADA COISA AQUI
+    private Integer permission; 
 
     public Integer getPermission() {
         return permission;

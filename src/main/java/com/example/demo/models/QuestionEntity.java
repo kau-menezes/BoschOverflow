@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table( name = "tbQuestion") //  mudando o nome da tabela 
+@Table( name = "tbQuestion") // Mudando o nome da tabela 
 public class QuestionEntity {
 
     @Id
@@ -43,6 +43,10 @@ public class QuestionEntity {
         this.questionText = questionText;
     }
 
+    /*
+     * Conectando a pergunta com o espaço em que ela foi feita 
+    */
+
     @ManyToOne
     @JoinColumn( name = "space_id")
     private SpaceEntity spaceId;
@@ -50,6 +54,10 @@ public class QuestionEntity {
     public SpaceEntity getSpaceId() {
         return spaceId;
     }
+
+    /*
+     * Conectando a pergunta com o usuário que fez ela
+    */
 
     @ManyToOne
     @JoinColumn( name = "user_id")

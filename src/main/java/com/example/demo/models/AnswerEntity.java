@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table( name = "tbAnswer") //  mudando o nome da tabela 
+@Table( name = "tbAnswer") // Mudando o nome da tabela 
 public class AnswerEntity {
 
     @Id
@@ -32,13 +32,21 @@ public class AnswerEntity {
         this.answerText = answerText;
     }
 
+    /*
+     * Conectando a Answer com a sua devida Question
+    */
+
     @ManyToOne
     @JoinColumn( name = "space_id")
-    private SpaceEntity spaceId;
+    private QuestionEntity questionId;
 
-    public SpaceEntity getSpaceId() {
-        return spaceId;
+    public QuestionEntity getQuestionId() {
+        return questionId;
     }
+
+    /*
+     * Conectando a Answer com o usuário que a criou
+    */
 
     @ManyToOne
     @JoinColumn( name = "user_id")

@@ -1,5 +1,6 @@
 package com.example.demo.dto.AnswerDto;
 
 public record CreateAnswerDto(
-    String text
+    String text,
+    Long questionId
 ) {}
