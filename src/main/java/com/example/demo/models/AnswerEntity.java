@@ -10,37 +10,26 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table( name = "tbQuestion") //  mudando o nome da tabela 
-public class Question {
+@Table( name = "tbAnswer") //  mudando o nome da tabela 
+public class AnswerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long questionId;
+    private Long asnwerId;
 
-    public Long getQuestionId() {
-        return questionId;
+    public Long getAnswerId() {
+        return asnwerId;
     }
 
     @Column
-    public String title;
+    public String answerText;
 
-    public String getTitle() {
-        return title;
+    public String getAnswerText() {
+        return answerText;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Column
-    public String questionText;
-
-    public String getQuestionText() {
-        return questionText;
-    }
-
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
     }
 
     @ManyToOne
