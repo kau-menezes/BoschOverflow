@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table( name = "tbSpace") //  mudando o nome da tabela 
+@Table( name = "tbSpace") // Mudando o nome da tabela 
 public class SpaceEntity {
     
     @Id
