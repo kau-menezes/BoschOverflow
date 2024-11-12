@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table( name = "tbQuestion") //  mudando o nome da tabela 
-public class Question {
+public class QuestionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
