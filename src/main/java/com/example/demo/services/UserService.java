@@ -14,5 +14,9 @@ import com.example.demo.models.UserEntity;
 
 public interface UserService {
     ResponseEntity<UserEntity> createUser(CreateUserDto newUserData);
-    ResponseEntity<LoginResponseDto> login(LoginDto loginData);
+    ResponseEntity<LoginResponseDto> login(LoginDto loginData);    
+    public boolean checkPassword(String password); // funções de teste
+    public boolean checkEmail(String email); // funções de teste
+    public boolean checkUsername(String username); // funções de teste
+    public boolean checkEdv(String edv); // funções de teste
 }
