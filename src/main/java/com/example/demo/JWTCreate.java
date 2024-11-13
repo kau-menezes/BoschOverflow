@@ -29,6 +29,7 @@ public class JWTCreate implements JWTService<Token> {
     }
 
     @Override
+    @SuppressWarnings({"UnnecessaryTemporaryOnConversionFromString", "CallToPrintStackTrace", "UseSpecificCatch"})
     public Token validate(String jwt) {
         try
         {

@@ -129,10 +129,7 @@ public class UserImpl implements UserService {
         if (minusc == 0)
             return false;
 
-        if (num == 0)
-            return false;
-
-        return true;
+        return num != 0;
     }
 
     @Override
@@ -156,10 +153,7 @@ public class UserImpl implements UserService {
         if(edv.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*"))
             return false;
 
-        if(edv.matches("[A-Z]*"))
-            return false;
-        
-        return true;
+        return !edv.matches("[A-Z]*");
     }
 
     
