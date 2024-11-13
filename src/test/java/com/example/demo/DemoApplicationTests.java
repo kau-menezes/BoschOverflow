@@ -38,7 +38,7 @@ class DemoApplicationTests {
 	@Test
 	void checkEdv() {
 		assertEquals(userService.checkEdv("1234567"), false); // edv tem que ter exatos 8 números
-		assertEquals(userService.checkEdv("1234567"), false); // edv tem que ter exatos 8 números
+		assertEquals(userService.checkEdv("123456789"), false); // edv tem que ter exatos 8 números
 		assertEquals(userService.checkEdv("12345678"), true); // ótimo
 		assertEquals(userService.checkEdv("11111111"), false); // ótimo MAS não pode cadastrar dois edvs iguais ent~so vê isso aí também finge que já tem o "11111111"
 		assertEquals(userService.checkEdv("1234567a"), false); // não pode conter letras
