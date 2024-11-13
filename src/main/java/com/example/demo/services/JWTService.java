@@ -2,13 +2,14 @@ package com.example.demo.services;
 
 import com.example.demo.dto.ExtractedInfo;
 
-// criamos uma DTO chamada ExtracedInfo (Informação Extraída)   : contém as informações necessárias do usuário
+/* -------------------------------------------------------------------------- */
+/*                              DTO ExtractedInfo                             */
+/* -------------------------------------------------------------------------- */
 
-//                                                              1. username;
-//                                                              2. id do usuário;
+/*      criamos uma DTO chamada ExtracedInfo (Informação Extraída) :          */
+/*  contém as informações necessárias do usuário:  username e id do usuário;  */
 
-// no projeto do Trevisan, era chamado de Token, mas era confuso rs
-                                            
+/*      no projeto do Trevisan, era chamado de Token, mas era confuso rs      */
 
 public interface JWTService {
         public String generateToken(ExtractedInfo claims); // generateToken: gerar Token ->  recebe um json (dto) e transforma no token (string xxx.xxx.xxx)
