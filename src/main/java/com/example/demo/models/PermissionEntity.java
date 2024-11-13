@@ -9,6 +9,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+/*
+ * Essa entidade é a entidade de conexão de um espaço com um usuário.
+ * Por ela podemos também mudar a permissão de um usuário dentro de um espaço. 
+  
+ * Os níveis de permissão podem ser:
+ *      0: Usuário leitor
+ *      1: Usuário que pode responder e perguntar.
+ *      2: Usuário administrador do espaço, pode adicionar outros usuários, transformar em adm e apagar o espaço e as perguntas.
+*/
+
 @Entity
 @Table( name = "tbPermission") // Mudando o nome da tabela 
 public class PermissionEntity {

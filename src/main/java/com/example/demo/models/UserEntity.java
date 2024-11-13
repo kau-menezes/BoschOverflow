@@ -7,6 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/*
+ * Essa é a entidade de usuário.
+ * Um usuário não pode ser cadastrado com o E-mail ou Username igual a de outro usuário. 
+*/
+
 @Entity
 @Table( name = "tbUser") // Mudando o nome da tabela 
 public class UserEntity {

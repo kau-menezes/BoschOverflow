@@ -9,6 +9,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/*
+ * Essa é a entidade de respostas, ela tem a conexão apenas com a pergunta e o usuário.
+ * Ela não conecta com o espaço diretamente, pois pegaremos o espaço pela pergunta que foi respondida. 
+*/
+
 @Entity
 @Table( name = "tbAnswer") // Mudando o nome da tabela 
 public class AnswerEntity {

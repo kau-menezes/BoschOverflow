@@ -9,6 +9,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/*
+ * Essa é a entidade da pergunta, quando uma pergunta foi feita, é aqui que ela deve ser salva.
+ * Aqui a conexão é feita com o usuário e com o espaço em que a pergunta foi feita.
+*/
+
 @Entity
 @Table( name = "tbQuestion") // Mudando o nome da tabela 
 public class QuestionEntity {
@@ -19,17 +24,6 @@ public class QuestionEntity {
 
     public Long getQuestionId() {
         return questionId;
-    }
-
-    @Column
-    public String title;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     @Column

@@ -11,5 +11,6 @@ import com.example.demo.models.AnswerEntity;
 */ 
 
 public interface AnswerService {
+    
     ResponseEntity<AnswerEntity> createAnswer(CreateAnswerDto newAnswerDto);
 }
