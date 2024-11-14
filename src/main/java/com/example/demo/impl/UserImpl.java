@@ -84,7 +84,7 @@ public class UserImpl implements UserService {
         JWTCreate jwtCreate = new JWTCreate();
         Token token = new Token();
         token.setId(user.getUserId());
-        token.setRole(user.getEDV());
+        token.setEDV(user.getEDV());
         
         if(!encoder.validate(pass, user.getPassword())) {
             return new ResponseEntity<>("Senha incorreta", HttpStatus.UNAUTHORIZED);

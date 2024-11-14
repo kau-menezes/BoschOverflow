@@ -38,8 +38,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        String edv = token.getEDV();
         
-        var authentication = new UsernamePasswordAuthenticationToken("jao", null, null);
+        var authentication = new UsernamePasswordAuthenticationToken(edv, null, null);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         request.setAttribute("token", token);

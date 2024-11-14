@@ -23,7 +23,7 @@ public class JWTCreate implements JWTService<Token> {
         var claims = new HashMap<String, Object>();
         
         claims.put("id", token.getId());
-        claims.put("role", token.getRole());
+        claims.put("EDV", token.getEDV());
 
         return get(claims);
     }
@@ -37,7 +37,7 @@ public class JWTCreate implements JWTService<Token> {
 
             Token token = new Token();
             token.setId(Long.parseLong(map.get("id").toString()));
-            token.setRole(map.get("role").toString());
+            token.setEDV(map.get("EDV").toString());
 
             return token;
         }

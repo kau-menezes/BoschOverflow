@@ -23,25 +23,9 @@ public class PermissionImpl implements PermissionService {
     @Autowired
     private PermissionRepository repo;
 
-    @Override
-    public ResponseEntity<Object> getPermission(@RequestHeader("Authorization") String authorization) {
-
-        if (authorization == null || !authorization.startsWith("Bearer ")) {
-            return new ResponseEntity<>("Token não enviado ou no formato incorreto", HttpStatus.UNAUTHORIZED);
-        }
-
-        String token = authorization.substring(7);  // Remover "Bearer " do token
-
-        // Valida o token
-        Token userToken = (Token) jwtService.validate(token);
-        if (userToken == null) {
-            return new ResponseEntity<>("Token inválido ou expirado", HttpStatus.UNAUTHORIZED);
-        }
-
-        List<PermissionEntity> permissions = repo.findAllById(userToken.getId());
-
-        return new ResponseEntity<>(permissions, HttpStatus.ACCEPTED);
-
-    }
+    // @Override
+    // public ResponseEntity<Object> getPermission() {
+        
+    // }
     
 }

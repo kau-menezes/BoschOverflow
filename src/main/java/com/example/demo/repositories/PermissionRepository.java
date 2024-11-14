@@ -1,14 +1,14 @@
 package com.example.demo.repositories;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
+import java.util.Optional;
 
->>>>>>> d2b2b53cd242946cbcc38778360241e2fb12ebe9
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.models.PermissionEntity;
+import com.example.demo.models.SpaceEntity;
+import com.example.demo.models.UserEntity;
 
 /*
  * Repositório para todas as querys da tabela "Permission". 
@@ -16,10 +16,7 @@ import com.example.demo.models.PermissionEntity;
 
 @Repository
 public interface PermissionRepository extends JpaRepository<PermissionEntity, Long> {
-<<<<<<< HEAD
-    
-=======
-
     List<PermissionEntity> findAllById(Long id);
->>>>>>> d2b2b53cd242946cbcc38778360241e2fb12ebe9
+
+    Optional<PermissionEntity> findByUserIdAndSpaceId(UserEntity user, SpaceEntity space);
 }

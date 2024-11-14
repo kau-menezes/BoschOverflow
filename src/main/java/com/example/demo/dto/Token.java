@@ -4,7 +4,7 @@ public class Token {
     
     private Long id;
 
-    private String role;
+    private String EDV;
 
     public Long getId() {
         return id;
@@ -14,11 +14,11 @@ public class Token {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getEDV() {
+        return EDV;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEDV(String EDV) {
+        this.EDV = EDV;
     }
 }

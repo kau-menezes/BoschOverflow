@@ -1,5 +1,7 @@
 package com.example.demo.impl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -80,8 +82,42 @@ public class SpaceImpl implements SpaceService {
     public ResponseEntity<Object> changeUserPermission(ChangeUserPermissionDto userData) {
         if (userData.email() == null || userData.spaceId() == null || userData.newPermission() == null)
             return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
+
+        var newPermission = Integer.parseInt(userData.newPermission());
+
+        if (newPermission != 1 && newPermission != 2)
+            return new ResponseEntity<>("Valores errados!", HttpStatus.BAD_REQUEST);
         
+        var user = repoUser.findByEmailOrEDV(userData.email(), null);
+        var space = repoSpace.findById(userData.spaceId());
+
+        if (user.isEmpty() || space.isEmpty()) {
+            return new ResponseEntity<>("Usuário ou espaço não encontrado", HttpStatus.NOT_FOUND);
+        }
+
+        UserEntity userEntity = user.get();
+        SpaceEntity spaceEntity = space.get();
+
+        Optional<PermissionEntity> permissionOpt = repoPermission.findByUserIdAndSpaceId(userEntity, spaceEntity);
         
+
+        PermissionEntity permissionEntity; 
+        if (permissionOpt.isEmpty()) {
+            permissionEntity = new PermissionEntity();
+            permissionEntity.setUserId(userEntity);
+            permissionEntity.setSpaceId(spaceEntity);
+            permissionEntity.setPermission(newPermission);
+
+            repoPermission.save(permissionEntity);
+
+            return new ResponseEntity<>("Permissão criada com sucesso!", HttpStatus.CREATED);
+        }
+        permissionEntity = permissionOpt.get();
+        permissionEntity.setPermission(newPermission);
+
+        repoPermission.save(permissionEntity);
+
+        return new ResponseEntity<>("Permissão alterada com sucesso!", HttpStatus.OK);
     }
     
 }

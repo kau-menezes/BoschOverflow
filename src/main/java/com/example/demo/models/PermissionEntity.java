@@ -66,6 +66,4 @@ public class PermissionEntity {
         this.permission = permission;
     }
 
-
-
 }
