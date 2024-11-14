@@ -12,6 +12,8 @@ import com.example.demo.models.QuestionEntity;
 */ 
 
 public interface QuestionService {
-    ResponseEntity<QuestionEntity> createQuestion(CreateQuestionDto newQuestionData);
-    ResponseEntity<QuestionEntity> deleteQuestion(DeleteQuestionDto questionData);
+    ResponseEntity<Object> createQuestion(CreateQuestionDto newQuestionData);
+    ResponseEntity<Object> deleteQuestion(DeleteQuestionDto questionData);
+    // usar findAll para retornar todas as perguntas
+    // usar finbyID retornaer pergunta específica
 }
