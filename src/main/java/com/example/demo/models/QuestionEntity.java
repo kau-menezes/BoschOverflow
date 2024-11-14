@@ -27,6 +27,17 @@ public class QuestionEntity {
     }
 
     @Column
+    public String questionTitle;
+
+    public String getQuestionTitle() {
+        return questionTitle;
+    }
+
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle;
+    }
+
+    @Column
     public String questionText;
 
     public String getQuestionText() {
@@ -44,6 +55,10 @@ public class QuestionEntity {
     @ManyToOne
     @JoinColumn( name = "space_id")
     private SpaceEntity spaceId;
+
+    public void setSpaceId(SpaceEntity spaceId) {
+        this.spaceId = spaceId;
+    }
 
     public SpaceEntity getSpaceId() {
         return spaceId;
