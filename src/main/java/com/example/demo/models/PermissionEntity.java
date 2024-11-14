@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /*
@@ -31,7 +31,7 @@ public class PermissionEntity {
         return permissionId;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "space_id")
     private SpaceEntity spaceId;
 
@@ -39,12 +39,20 @@ public class PermissionEntity {
         return spaceId;
     }
 
-    @OneToOne
+    public void setSpaceId(SpaceEntity spaceId) {
+        this.spaceId = spaceId;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity userId;
 
     public UserEntity getUserId() {
         return userId;
+    }
+
+    public void setUserId(UserEntity userId) {
+        this.userId = userId;
     }
 
     @Column
@@ -57,5 +65,7 @@ public class PermissionEntity {
     public void setPermission(Integer permission) {
         this.permission = permission;
     }
+
+
 
 }
