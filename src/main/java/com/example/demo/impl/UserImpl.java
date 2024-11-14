@@ -16,7 +16,6 @@ import com.example.demo.dto.LoginDto.LoginDto;
 import com.example.demo.dto.LoginDto.LoginResponseDto;
 import com.example.demo.dto.Token;
 import com.example.demo.dto.UserDto.CreateUserDto;
-import com.example.demo.dto.UserDto.GetUserDto;
 import com.example.demo.models.UserEntity;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserService;

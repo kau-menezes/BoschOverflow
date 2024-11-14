@@ -16,6 +16,7 @@ import com.example.demo.models.UserEntity;
  * Repositório para a tabela de "User". 
 */
 
+@SuppressWarnings("unused")
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>, PagingAndSortingRepository<UserEntity, Long>{
     List<UserEntity> findByEmail(String email);
