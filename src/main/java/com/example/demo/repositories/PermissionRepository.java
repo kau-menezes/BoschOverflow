@@ -11,5 +11,5 @@ import com.example.demo.models.PermissionEntity;
 
 @Repository
 public interface PermissionRepository extends JpaRepository<PermissionEntity, Long> {
-
+    
 }
