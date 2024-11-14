@@ -1,10 +1,13 @@
 package com.example.demo.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -13,6 +16,7 @@ import com.example.demo.dto.LoginDto.LoginDto;
 import com.example.demo.dto.LoginDto.LoginResponseDto;
 import com.example.demo.dto.Token;
 import com.example.demo.dto.UserDto.CreateUserDto;
+import com.example.demo.dto.UserDto.GetUserDto;
 import com.example.demo.models.UserEntity;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.UserService;
@@ -154,6 +158,20 @@ public class UserImpl implements UserService {
             return false;
 
         return !edv.matches("[A-Z]*");
+    }
+
+    @Override
+    public List<UserEntity> getUsers(String query, int page, int size) {
+        // Se a query estiver vazia ou nula, busca todos os usuários com paginação
+        if (query == null || query.isEmpty()) {
+            // Busca todos os usuários na página específica
+            Page<UserEntity> usersPage = repo.findAll(PageRequest.of(page, size));
+            return usersPage.getContent();  // Retorna apenas os usuários
+        }
+    
+        // Caso contrário, faz a busca com o filtro da query (exemplo, por nome)
+        Page<UserEntity> usersPage = repo.findByNameContaining(query, PageRequest.of(page, size));
+        return usersPage.getContent();  // Retorna apenas os usuários
     }
 
     
