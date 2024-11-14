@@ -20,6 +20,7 @@ public class AnswerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long asnwerId;
 
     public Long getAnswerId() {
@@ -42,8 +43,12 @@ public class AnswerEntity {
     */
 
     @ManyToOne
-    @JoinColumn( name = "space_id")
+    @JoinColumn( name = "question_id")
     private QuestionEntity questionId;
+
+    public void setQuestionId(QuestionEntity questionId) {
+        this.questionId = questionId;
+    }
 
     public QuestionEntity getQuestionId() {
         return questionId;
@@ -60,7 +65,5 @@ public class AnswerEntity {
     public UserEntity getUserId() {
         return userId;
     }
-
-
 
 }

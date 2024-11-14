@@ -1,9 +1,13 @@
 package com.example.demo.impl;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.example.demo.dto.GetQuestion.GetQuestiondto;
 import com.example.demo.dto.QuestionDto.CreateQuestionDto;
 import com.example.demo.dto.QuestionDto.DeleteQuestionDto;
 import com.example.demo.models.QuestionEntity;
@@ -52,6 +56,16 @@ public class QuestionImpl implements QuestionService{
 
         repoQuestion.deleteById(idQuestion);
         return new ResponseEntity<>("Deletado com sucesso", HttpStatus.OK);
+    }
+
+    @Override
+    public List<QuestionEntity> getAllQuestions() {
+        return repoQuestion.findAll();
+    }
+
+    @Override
+    public Optional<QuestionEntity> getQuestionById(GetQuestiondto questionData) {
+        return repoQuestion.findById(questionData.id());
     }
     
 }

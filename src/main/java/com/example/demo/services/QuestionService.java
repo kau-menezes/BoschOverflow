@@ -1,7 +1,11 @@
 package com.example.demo.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
 
+import com.example.demo.dto.GetQuestion.GetQuestiondto;
 import com.example.demo.dto.QuestionDto.CreateQuestionDto;
 import com.example.demo.dto.QuestionDto.DeleteQuestionDto;
 import com.example.demo.models.QuestionEntity;
@@ -14,6 +18,6 @@ import com.example.demo.models.QuestionEntity;
 public interface QuestionService {
     ResponseEntity<Object> createQuestion(CreateQuestionDto newQuestionData);
     ResponseEntity<Object> deleteQuestion(DeleteQuestionDto questionData);
-    // usar findAll para retornar todas as perguntas
-    // usar finbyID retornaer pergunta específica
+    List<QuestionEntity> getAllQuestions();
+    Optional<QuestionEntity> getQuestionById(GetQuestiondto questionData);
 }
