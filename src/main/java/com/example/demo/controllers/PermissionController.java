@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.LoginDto.LoginDto;
-import com.example.demo.services.UserService;
+import com.example.demo.dto.SpaceDto.ChangeUserPermissionDto;
+import com.example.demo.services.SpaceService;
 
 @RestController
-@RequestMapping("/auth")
-public class AuthController {
+@RequestMapping("/permission")
+public class PermissionController {
     
     @Autowired
-    UserService userService;
+    SpaceService spaceService;
 
     @PostMapping
-    public ResponseEntity<Object> login(@RequestBody LoginDto data) {
-        var logado = userService.login(data);
+    public ResponseEntity<Object> changePermission(@RequestBody ChangeUserPermissionDto data) {
+        var permission = spaceService.changeUserPermission(data);
 
-        return logado;
+        return permission;
     }
 }

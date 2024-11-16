@@ -1,7 +1,6 @@
 package com.example.demo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
@@ -18,6 +17,6 @@ import com.example.demo.models.QuestionEntity;
 public interface QuestionService {
     ResponseEntity<Object> createQuestion(CreateQuestionDto newQuestionData);
     ResponseEntity<Object> deleteQuestion(DeleteQuestionDto questionData);
-    List<QuestionEntity> getAllQuestions();
-    Optional<QuestionEntity> getQuestionById(GetQuestiondto questionData);
+    List<QuestionEntity> getAllQuestions(Long spaceId, int page, int size);
+    ResponseEntity<Object> getQuestionById(GetQuestiondto questionData);
 }

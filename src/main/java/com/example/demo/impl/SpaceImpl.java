@@ -1,8 +1,11 @@
 package com.example.demo.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -31,20 +34,41 @@ public class SpaceImpl implements SpaceService {
 
     @Override
     public ResponseEntity<Object> createSpace(CreateSpaceDto newSpaceData) {
-        if(newSpaceData.title() == null) 
-            return new ResponseEntity<>("Campo vazio", HttpStatus.BAD_REQUEST);
-
+        if (newSpaceData.title() == null || newSpaceData.userId() == null) {
+            return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
+        }
+    
+        Optional<UserEntity> userOpt = repoUser.findById(newSpaceData.userId());
+        if (userOpt.isEmpty()) {
+            return new ResponseEntity<>("Usuário não encontrado!", HttpStatus.NOT_FOUND);
+        }
+        UserEntity userEntity = userOpt.get();
+    
         SpaceEntity spaceEntity = new SpaceEntity();
         spaceEntity.setTitle(newSpaceData.title());
-
-        repoSpace.save(spaceEntity);
-        return new ResponseEntity<>("Espaço criado", HttpStatus.CREATED);
+    
+        SpaceEntity savedSpace = repoSpace.save(spaceEntity);
+    
+        // Criar permissão de administrador (3) para o usuário
+        PermissionEntity permissionEntity = new PermissionEntity();
+        permissionEntity.setUserId(userEntity);
+        permissionEntity.setSpaceId(savedSpace);
+        permissionEntity.setPermission(3);
+    
+        repoPermission.save(permissionEntity);
+    
+        return new ResponseEntity<>("Espaço criado e permissão de administrador atribuída!", HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<Object> deleteSpace(DeleteSpaceDto spaceData) {
         if (spaceData.spaceId() == null)
             return new ResponseEntity<>("Campo vazio!", HttpStatus.BAD_REQUEST);
+
+        var spaceOpt = repoSpace.findById(spaceData.spaceId());
+
+        if (spaceOpt.isEmpty())
+            return new ResponseEntity<>("Espaço não encontrado!", HttpStatus.NOT_FOUND);
 
         repoSpace.deleteById(spaceData.spaceId());
 
@@ -85,7 +109,7 @@ public class SpaceImpl implements SpaceService {
 
         var newPermission = Integer.parseInt(userData.newPermission());
 
-        if (newPermission != 1 && newPermission != 2)
+        if (newPermission != 0 && newPermission != 1 && newPermission != 2)
             return new ResponseEntity<>("Valores errados!", HttpStatus.BAD_REQUEST);
         
         var user = repoUser.findByEmailOrEDV(userData.email(), null);
@@ -99,6 +123,16 @@ public class SpaceImpl implements SpaceService {
         SpaceEntity spaceEntity = space.get();
 
         Optional<PermissionEntity> permissionOpt = repoPermission.findByUserIdAndSpaceId(userEntity, spaceEntity);
+
+        if (newPermission == 0) {
+            if (permissionOpt.isPresent()) {
+                repoPermission.deleteByUserIdAndSpaceId(userEntity, spaceEntity);
+                return new ResponseEntity<>("Permissao removida com sucesso!", HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>("Permissao não encontrada", HttpStatus.NOT_FOUND);
+            }
+        }
         
 
         PermissionEntity permissionEntity; 
@@ -118,6 +152,17 @@ public class SpaceImpl implements SpaceService {
         repoPermission.save(permissionEntity);
 
         return new ResponseEntity<>("Permissão alterada com sucesso!", HttpStatus.OK);
+    }
+
+    @Override
+    public List<SpaceEntity> getSpace(String query, int page, int size) {
+        if (query == null || query.isEmpty()) {
+            Page<SpaceEntity> spacePage = repoSpace.findAll(PageRequest.of(page, size));
+            return spacePage.getContent();
+        }
+
+        Page<SpaceEntity> spacePage = repoSpace.findByNameContaining(query, PageRequest.of(page, size));
+        return spacePage.getContent();
     }
     
 }
