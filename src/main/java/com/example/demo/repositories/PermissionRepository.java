@@ -18,6 +18,6 @@ import com.example.demo.models.UserEntity;
 public interface PermissionRepository extends JpaRepository<PermissionEntity, Long> {
     List<PermissionEntity> findAllByPermissionId(Long permissionId);
 
-    Optional<PermissionEntity> findByUserIdAndSpaceId(UserEntity user, SpaceEntity space);
-    void deleteByUserIdAndSpaceId(UserEntity user, SpaceEntity space);
+    Optional<PermissionEntity> findByEDVAndSpaceId(UserEntity EDV, SpaceEntity space);
+    void deleteByEDVAndSpaceId(UserEntity EDV, SpaceEntity space);
 }

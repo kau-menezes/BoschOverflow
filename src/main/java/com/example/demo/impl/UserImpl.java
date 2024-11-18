@@ -83,7 +83,6 @@ public class UserImpl implements UserService {
             return new ResponseEntity<>("Usuário não encontrado", HttpStatus.NOT_FOUND);
 
         UserEntity user = userOptional.get();
-        System.out.println("\n\n\n\n\n\n\n\n\nBgl lá: " + user);
 
         JWTCreate jwtCreate = new JWTCreate();
         Token token = new Token();
@@ -95,7 +94,7 @@ public class UserImpl implements UserService {
         }
         
         else {
-            var jwt = jwtCreate.get(token);
+            var jwt = "Bearer " + jwtCreate.get(token);
 
             return ResponseEntity
             .status(HttpStatus.OK)

@@ -29,6 +29,7 @@ public class SpaceController {
     ) {
         return ResponseEntity.ok(spaceService.getSpace(query, page, size));
     }
+    
     @PostMapping
     public ResponseEntity<Object> createSpace(@RequestBody CreateSpaceDto data) {
         var created = spaceService.createSpace(data);

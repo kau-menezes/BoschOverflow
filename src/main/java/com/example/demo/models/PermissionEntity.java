@@ -44,15 +44,15 @@ public class PermissionEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity userId;
+    @JoinColumn(name = "EDV")
+    private UserEntity EDV;
 
-    public UserEntity getUserId() {
-        return userId;
+    public UserEntity getEDV() {
+        return EDV;
     }
 
-    public void setUserId(UserEntity userId) {
-        this.userId = userId;
+    public void setEDV(UserEntity EDV) {
+        this.EDV = EDV;
     }
 
     @Column

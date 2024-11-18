@@ -34,11 +34,11 @@ public class SpaceImpl implements SpaceService {
 
     @Override
     public ResponseEntity<Object> createSpace(CreateSpaceDto newSpaceData) {
-        if (newSpaceData.title() == null || newSpaceData.userId() == null) {
+        if (newSpaceData.title() == null || newSpaceData.EDV() == null) {
             return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
         }
     
-        Optional<UserEntity> userOpt = repoUser.findById(newSpaceData.userId());
+        Optional<UserEntity> userOpt = repoUser.findById(newSpaceData.EDV());
         if (userOpt.isEmpty()) {
             return new ResponseEntity<>("Usuário não encontrado!", HttpStatus.NOT_FOUND);
         }
@@ -51,7 +51,7 @@ public class SpaceImpl implements SpaceService {
     
         // Criar permissão de administrador (3) para o usuário
         PermissionEntity permissionEntity = new PermissionEntity();
-        permissionEntity.setUserId(userEntity);
+        permissionEntity.setEDV(userEntity);
         permissionEntity.setSpaceId(savedSpace);
         permissionEntity.setPermission(3);
     
@@ -95,7 +95,7 @@ public class SpaceImpl implements SpaceService {
 
         permissionEntity.setPermission(addUserData.permission());
         permissionEntity.setSpaceId(spaceEntity);
-        permissionEntity.setUserId(userEntity);
+        permissionEntity.setEDV(userEntity);
 
         repoPermission.save(permissionEntity);
 
@@ -122,11 +122,11 @@ public class SpaceImpl implements SpaceService {
         UserEntity userEntity = user.get();
         SpaceEntity spaceEntity = space.get();
 
-        Optional<PermissionEntity> permissionOpt = repoPermission.findByUserIdAndSpaceId(userEntity, spaceEntity);
+        Optional<PermissionEntity> permissionOpt = repoPermission.findByEDVAndSpaceId(userEntity, spaceEntity);
 
         if (newPermission == 0) {
             if (permissionOpt.isPresent()) {
-                repoPermission.deleteByUserIdAndSpaceId(userEntity, spaceEntity);
+                repoPermission.deleteByEDVAndSpaceId(userEntity, spaceEntity);
                 return new ResponseEntity<>("Permissao removida com sucesso!", HttpStatus.OK);
             }
             else {
@@ -138,7 +138,7 @@ public class SpaceImpl implements SpaceService {
         PermissionEntity permissionEntity; 
         if (permissionOpt.isEmpty()) {
             permissionEntity = new PermissionEntity();
-            permissionEntity.setUserId(userEntity);
+            permissionEntity.setEDV(userEntity);
             permissionEntity.setSpaceId(spaceEntity);
             permissionEntity.setPermission(newPermission);
 

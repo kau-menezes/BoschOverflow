@@ -75,7 +75,6 @@ public class JWTCreate implements JWTService<Token> {
     @SuppressWarnings("unchecked")
     @Override
     public List<String> getRoles(Claims claims) {
-        // Aqui você pode ajustar a chave "roles" caso esteja usando uma chave diferente no seu JWT
         return claims.get("roles", List.class);
     }
 }
