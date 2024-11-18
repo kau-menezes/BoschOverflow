@@ -44,7 +44,7 @@ public class PermissionEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "EDV")
+    @JoinColumn(name = "Usuário")
     private UserEntity EDV;
 
     public UserEntity getEDV() {
