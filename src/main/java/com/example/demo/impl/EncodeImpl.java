@@ -1,9 +1,10 @@
 package com.example.demo.impl;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import com.example.demo.services.EncodeService;
-
+@Component
 public class EncodeImpl implements EncodeService{
 
     @Override

@@ -161,7 +161,7 @@ public class SpaceImpl implements SpaceService {
             return spacePage.getContent();
         }
 
-        Page<SpaceEntity> spacePage = repoSpace.findByNameContaining(query, PageRequest.of(page, size));
+        Page<SpaceEntity> spacePage = repoSpace.findByTitleContaining(query, PageRequest.of(page, size));
         return spacePage.getContent();
     }
     
