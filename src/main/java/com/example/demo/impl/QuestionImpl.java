@@ -3,8 +3,8 @@ package com.example.demo.impl;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +33,7 @@ public class QuestionImpl implements QuestionService{
     @Autowired
     private UserRepository userRepository;
 
+    @Override
     public ResponseEntity<Object> createQuestion(CreateQuestionDto newQuestionData) {
         // Verificar se o usuário e o espaço existem
         Optional<UserEntity> userOpt = userRepository.findById(newQuestionData.userId());
