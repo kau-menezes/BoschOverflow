@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,10 +30,9 @@ public class QuestionController {
         @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "10") int size
     ) {
-
         if (spaceId == null)
             return new ResponseEntity<>("Campo 'spaceId' vazio!", HttpStatus.BAD_REQUEST);
-
+    
         return ResponseEntity.ok(questionService.getAllQuestions(spaceId, page, size));
     }
 
@@ -44,7 +44,7 @@ public class QuestionController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> postQuestion(CreateQuestionDto data) {
+    public ResponseEntity<Object> postQuestion(@RequestBody CreateQuestionDto data) {
         var created = questionService.createQuestion(data);
 
         return created;
