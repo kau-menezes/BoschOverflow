@@ -37,8 +37,11 @@ public class SpaceImpl implements SpaceService {
         if (newSpaceData.title() == null || newSpaceData.EDV() == null) {
             return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
         }
-    
-        Optional<UserEntity> userOpt = repoUser.findById(newSpaceData.EDV());
+        
+
+
+        Optional<UserEntity> userOpt = repoUser.findByEDV(newSpaceData.EDV());
+
         if (userOpt.isEmpty()) {
             return new ResponseEntity<>("Usuário não encontrado!", HttpStatus.NOT_FOUND);
         }
