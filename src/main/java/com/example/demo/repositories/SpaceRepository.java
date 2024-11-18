@@ -13,5 +13,5 @@ import com.example.demo.models.SpaceEntity;
 
 @Repository
 public interface SpaceRepository extends JpaRepository<SpaceEntity, Long> {
-    Page<SpaceEntity> findBySpaceIdContaining(String query, PageRequest pageRequest);
+    Page<SpaceEntity> findByTitleContaining(String query, PageRequest pageRequest);
 }
