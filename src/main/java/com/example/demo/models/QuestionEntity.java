@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 */
 
 @Entity
-@Table( name = "tbQuestion") // Mudando o nome da tabela 
+@Table(name = "tbQuestion") // Mudando o nome da tabela 
 public class QuestionEntity {
 
     @Id
@@ -69,7 +69,7 @@ public class QuestionEntity {
     */
 
     @ManyToOne
-    @JoinColumn( name = "user_id")
+    @JoinColumn(name = "user_id")
     private UserEntity userId;
 
     public UserEntity getUserId() {

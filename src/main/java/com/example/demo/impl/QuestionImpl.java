@@ -62,7 +62,7 @@ public class QuestionImpl implements QuestionService{
 
     @Override
     public List<QuestionEntity> getAllQuestions(Long spaceId, int page, int size) {
-        Page<QuestionEntity> questionPage = repoQuestion.findByNameContaining(spaceId, PageRequest.of(page, size));
+        Page<QuestionEntity> questionPage = repoQuestion.findBySpaceIdContaining(spaceId, PageRequest.of(page, size));
         return questionPage.getContent();
     }
 

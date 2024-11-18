@@ -13,5 +13,5 @@ import com.example.demo.models.QuestionEntity;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<QuestionEntity, Long> {
-    Page<QuestionEntity> findByNameContaining(Long spaceId, PageRequest pageRequest);
+    Page<QuestionEntity> findBySpaceIdContaining(Long spaceId, PageRequest pageRequest);
 }

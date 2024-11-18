@@ -169,7 +169,7 @@ public class UserImpl implements UserService {
         }
     
         // Caso contrário, faz a busca com o filtro da query (exemplo, por nome)
-        Page<UserEntity> usersPage = repo.findByNameContaining(query, PageRequest.of(page, size));
+        Page<UserEntity> usersPage = repo.findByUserIdContaining(query, PageRequest.of(page, size));
         return usersPage.getContent();  // Retorna apenas os usuários
     }
 
