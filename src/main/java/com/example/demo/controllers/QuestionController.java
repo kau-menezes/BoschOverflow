@@ -24,7 +24,7 @@ public class QuestionController {
     @Autowired
     QuestionService questionService;
 
-    @GetMapping("/{space}")
+    @GetMapping("/{space}") // Retorna todas as questões do espaço específico
     public ResponseEntity<Object> getQuestion(
         @PathVariable("space") Long spaceId,
         @RequestParam(defaultValue = "0") int page,
@@ -36,7 +36,7 @@ public class QuestionController {
         return ResponseEntity.ok(questionService.getAllQuestions(spaceId, page, size));
     }
 
-    @GetMapping("/byId/{idQuestion}")
+    @GetMapping("/byId/{idQuestion}") // Pega uma questão por id
     public ResponseEntity<Object> getQuestionById(@PathVariable GetQuestiondto questiondto) { 
         var question = questionService.getQuestionById(questiondto);
 
