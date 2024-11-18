@@ -3,6 +3,7 @@ package com.example.demo;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.crypto.SecretKey;
@@ -69,5 +70,12 @@ public class JWTCreate implements JWTService<Token> {
             .getPayload();
         
         return new HashMap<>(claims);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<String> getRoles(Claims claims) {
+        // Aqui você pode ajustar a chave "roles" caso esteja usando uma chave diferente no seu JWT
+        return claims.get("roles", List.class);
     }
 }
