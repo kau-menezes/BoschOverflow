@@ -19,9 +19,6 @@ public class EncodeImpl implements EncodeService{
 
         var encoder = new BCryptPasswordEncoder(10);
 
-        if (!encoder.matches(password, passEncode))
-            return false;
-        
-        return true;
+        return encoder.matches(password, passEncode);
     }
 }
