@@ -44,8 +44,8 @@ public class PermissionEntity {
 
     // Usar userId em vez de EDV para a chave estrangeira
     @ManyToOne
-    @JoinColumn(name = "user_id") // Referencia o userId da tabela tbUser
-    private UserEntity user;
+    @JoinColumn(name = "Usuário")
+    private UserEntity EDV;
 
     public UserEntity getUser() {
         return user;

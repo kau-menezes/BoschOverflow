@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dto.SpaceDto.AddUserDto;
 import com.example.demo.dto.SpaceDto.ChangeUserPermissionDto;
@@ -20,6 +21,7 @@ import com.example.demo.repositories.PermissionRepository;
 import com.example.demo.repositories.SpaceRepository;
 import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.SpaceService;
+
 
 public class SpaceImpl implements SpaceService {
 
@@ -49,19 +51,18 @@ public class SpaceImpl implements SpaceService {
 
         SpaceEntity savedSpace = repoSpace.save(spaceEntity);
 
-        // Criar permissão de administrador (3) para o usuário
         PermissionEntity permissionEntity = new PermissionEntity();
         permissionEntity.setUser(userEntity); // Agora associamos o userId, que é a chave primária
         permissionEntity.setSpaceId(savedSpace);
-        permissionEntity.setPermission(3);
+        permissionEntity.setPermission(2); 
 
         repoPermission.save(permissionEntity);
 
         return new ResponseEntity<>("Espaço criado e permissão de administrador atribuída!", HttpStatus.CREATED);
     }
 
-    
 
+    @Transactional
     @Override
     public ResponseEntity<Object> deleteSpace(DeleteSpaceDto spaceData) {
         if (spaceData.spaceId() == null)
@@ -71,6 +72,10 @@ public class SpaceImpl implements SpaceService {
 
         if (spaceOpt.isEmpty())
             return new ResponseEntity<>("Espaço não encontrado!", HttpStatus.NOT_FOUND);
+
+        SpaceEntity spaceEntity = spaceOpt.get();
+
+        repoPermission.deleteAllBySpaceId(spaceEntity);
 
         repoSpace.deleteById(spaceData.spaceId());
 

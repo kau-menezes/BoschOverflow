@@ -38,7 +38,7 @@ public class SpaceController {
 
 
     @DeleteMapping
-    public ResponseEntity<Object> deleteSpace(DeleteSpaceDto data) {
+    public ResponseEntity<Object> deleteSpace(@RequestBody DeleteSpaceDto data) {
         var deleted = spaceService.deleteSpace(data);
 
         return deleted;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.models.PermissionEntity;
@@ -20,4 +21,7 @@ public interface PermissionRepository extends JpaRepository<PermissionEntity, Lo
 
     Optional<PermissionEntity> findByEDVAndSpaceId(UserEntity EDV, SpaceEntity space);
     void deleteByEDVAndSpaceId(UserEntity EDV, SpaceEntity space);
+
+    // @Query("DELETE FROM PermissionEntity p WHERE p.space.id = :spaceId")
+    void deleteAllBySpaceId(SpaceEntity spaceId);
 }
