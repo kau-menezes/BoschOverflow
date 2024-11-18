@@ -18,6 +18,8 @@ import com.example.demo.repositories.QuestionRepository;
 import com.example.demo.repositories.SpaceRepository;
 import com.example.demo.services.QuestionService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 public class QuestionImpl implements QuestionService{
 
     @Autowired
@@ -59,12 +61,22 @@ public class QuestionImpl implements QuestionService{
         repoQuestion.deleteById(idQuestion);
         return new ResponseEntity<>("Deletado com sucesso", HttpStatus.OK);
     }
+@Override
+public List<QuestionEntity> getAllQuestions(Long spaceId, int page, int size) {
 
-    @Override
-    public List<QuestionEntity> getAllQuestions(Long spaceId, int page, int size) {
-        Page<QuestionEntity> questionPage = repoQuestion.findBySpaceIdContaining(spaceId, PageRequest.of(page, size));
-        return questionPage.getContent();
+    Optional<SpaceEntity> spaceOpt = repoSpace.findById(spaceId);
+    
+    if (spaceOpt.isEmpty()) {
+        throw new EntityNotFoundException("Espaço não encontrado!");
     }
+    
+    SpaceEntity space = spaceOpt.get();
+    
+    // Usando a SpaceEntity para filtrar as questões
+    Page<QuestionEntity> questionPage = repoQuestion.findBySpaceId(space, PageRequest.of(page, size));
+    return questionPage.getContent();
+}
+
 
     @Override
     public ResponseEntity<Object> getQuestionById(GetQuestiondto questionData) {
