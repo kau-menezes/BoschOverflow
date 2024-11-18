@@ -14,8 +14,10 @@ import com.example.demo.dto.QuestionDto.CreateQuestionDto;
 import com.example.demo.dto.QuestionDto.DeleteQuestionDto;
 import com.example.demo.models.QuestionEntity;
 import com.example.demo.models.SpaceEntity;
+import com.example.demo.models.UserEntity;
 import com.example.demo.repositories.QuestionRepository;
 import com.example.demo.repositories.SpaceRepository;
+import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.QuestionService;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -28,29 +30,47 @@ public class QuestionImpl implements QuestionService{
     @Autowired
     private SpaceRepository repoSpace;
 
-    @Override
+    @Autowired
+    private UserRepository userRepository;
+
     public ResponseEntity<Object> createQuestion(CreateQuestionDto newQuestionData) {
-
-        var title = newQuestionData.title();
-        var text = newQuestionData.text();
-        var spaceId = newQuestionData.spaceId();
-
-        if(title == null || text == null || spaceId == null)
-            return new ResponseEntity<>("Campos vazios",HttpStatus.BAD_REQUEST);
-
+        // Verificar se o usuário e o espaço existem
+        Optional<UserEntity> userOpt = userRepository.findById(newQuestionData.userId());
+        Optional<SpaceEntity> spaceOpt = repoSpace.findById(newQuestionData.spaceId());
+    
+        if (userOpt.isEmpty()) {
+            // Retornar 404 se o usuário não for encontrado
+            return new ResponseEntity<>("Usuário não encontrado!", HttpStatus.NOT_FOUND);
+        }
+    
+        if (spaceOpt.isEmpty()) {
+            // Retornar 404 se o espaço não for encontrado
+            return new ResponseEntity<>("Espaço não encontrado!", HttpStatus.NOT_FOUND);
+        }
+    
+        // Obter as entidades de usuário e espaço
+        UserEntity user = userOpt.get();
+        SpaceEntity space = spaceOpt.get();
+    
+        // Criando a questão
         QuestionEntity question = new QuestionEntity();
-        question.setQuestionText(text);
-        question.setQuestionTitle(title);
-        
-        var id = repoSpace.findById(spaceId);
-        SpaceEntity idSpace = id.get();
-
-        question.setSpaceId(idSpace);
-        
-        repoQuestion.save(question);
-
-        return new ResponseEntity<>("Criado com sucesso!", HttpStatus.CREATED);
+        question.setQuestionTitle(newQuestionData.questionTitle());
+        question.setQuestionText(newQuestionData.questionText());
+        question.setUserId(user);  // Associar o User
+        question.setSpaceId(space); // Associar o Space
+    
+        try {
+            // Salvar a questão no banco
+            repoQuestion.save(question);
+        } catch (Exception e) {
+            // Caso ocorra algum erro durante a persistência
+            return new ResponseEntity<>("Erro ao salvar a questão: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    
+        // Retornar uma resposta de sucesso
+        return new ResponseEntity<>("Questão criada com sucesso!", HttpStatus.CREATED);
     }
+    
 
     @Override
     public ResponseEntity<Object> deleteQuestion(DeleteQuestionDto questionData) {
@@ -61,21 +81,21 @@ public class QuestionImpl implements QuestionService{
         repoQuestion.deleteById(idQuestion);
         return new ResponseEntity<>("Deletado com sucesso", HttpStatus.OK);
     }
-@Override
-public List<QuestionEntity> getAllQuestions(Long spaceId, int page, int size) {
+    @Override
+    public List<QuestionEntity> getAllQuestions(Long spaceId, int page, int size) {
 
-    Optional<SpaceEntity> spaceOpt = repoSpace.findById(spaceId);
-    
-    if (spaceOpt.isEmpty()) {
-        throw new EntityNotFoundException("Espaço não encontrado!");
+        Optional<SpaceEntity> spaceOpt = repoSpace.findById(spaceId);
+        
+        if (spaceOpt.isEmpty()) {
+            throw new EntityNotFoundException("Espaço não encontrado!");
+        }
+        
+        SpaceEntity space = spaceOpt.get();
+        
+        // Usando a SpaceEntity para filtrar as questões
+        Page<QuestionEntity> questionPage = repoQuestion.findBySpaceId(space, PageRequest.of(page, size));
+        return questionPage.getContent();
     }
-    
-    SpaceEntity space = spaceOpt.get();
-    
-    // Usando a SpaceEntity para filtrar as questões
-    Page<QuestionEntity> questionPage = repoQuestion.findBySpaceId(space, PageRequest.of(page, size));
-    return questionPage.getContent();
-}
 
 
     @Override

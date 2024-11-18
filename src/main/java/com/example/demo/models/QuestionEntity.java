@@ -69,13 +69,15 @@ public class QuestionEntity {
     */
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id") 
     private UserEntity userId;
+
+
+    public void setUserId(UserEntity userId) {
+        this.userId = userId;
+    }
 
     public UserEntity getUserId() {
         return userId;
     }
-
-
-
 }
