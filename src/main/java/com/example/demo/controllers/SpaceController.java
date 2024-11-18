@@ -14,7 +14,7 @@ import com.example.demo.dto.SpaceDto.DeleteSpaceDto;
 import com.example.demo.services.SpaceService;
 
 @RestController
-@RequestMapping("spaces/")
+@RequestMapping("/spaces")
 public class SpaceController {
     
     @Autowired
