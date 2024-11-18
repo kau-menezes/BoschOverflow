@@ -37,28 +37,30 @@ public class SpaceImpl implements SpaceService {
         if (newSpaceData.title() == null || newSpaceData.EDV() == null) {
             return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
         }
-    
+
         Optional<UserEntity> userOpt = repoUser.findByEDV(newSpaceData.EDV());
         if (userOpt.isEmpty()) {
             return new ResponseEntity<>("Usuário não encontrado!", HttpStatus.NOT_FOUND);
         }
         UserEntity userEntity = userOpt.get();
-    
+
         SpaceEntity spaceEntity = new SpaceEntity();
         spaceEntity.setTitle(newSpaceData.title());
-    
+
         SpaceEntity savedSpace = repoSpace.save(spaceEntity);
-    
+
         // Criar permissão de administrador (3) para o usuário
         PermissionEntity permissionEntity = new PermissionEntity();
-        permissionEntity.setEDV(userEntity);
+        permissionEntity.setUser(userEntity); // Agora associamos o userId, que é a chave primária
         permissionEntity.setSpaceId(savedSpace);
         permissionEntity.setPermission(3);
-    
+
         repoPermission.save(permissionEntity);
-    
+
         return new ResponseEntity<>("Espaço criado e permissão de administrador atribuída!", HttpStatus.CREATED);
     }
+
+    
 
     @Override
     public ResponseEntity<Object> deleteSpace(DeleteSpaceDto spaceData) {
@@ -95,7 +97,7 @@ public class SpaceImpl implements SpaceService {
 
         permissionEntity.setPermission(addUserData.permission());
         permissionEntity.setSpaceId(spaceEntity);
-        permissionEntity.setEDV(userEntity);
+        permissionEntity.setUser(userEntity);
 
         repoPermission.save(permissionEntity);
 
@@ -138,7 +140,7 @@ public class SpaceImpl implements SpaceService {
         PermissionEntity permissionEntity; 
         if (permissionOpt.isEmpty()) {
             permissionEntity = new PermissionEntity();
-            permissionEntity.setEDV(userEntity);
+            permissionEntity.setUser(userEntity);
             permissionEntity.setSpaceId(spaceEntity);
             permissionEntity.setPermission(newPermission);
 
