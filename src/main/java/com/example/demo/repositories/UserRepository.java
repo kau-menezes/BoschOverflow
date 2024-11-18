@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, PagingA
     List<UserEntity> findByEmail(String email);
     List<UserEntity> findByEDV(String EDV);
 
-    @Query("SELECT u FROM UserEntity u WHERE (:email IS NULL OR u.email = :email) OR (:EDV IS NULL OR u.EDV = :EDV)")
+    @Query("SELECT u FROM UserEntity u WHERE u.email = :email OR u.EDV = :EDV")
     Optional<UserEntity> findByEmailOrEDV(String email, String EDV);
 
     Page<UserEntity> findByUserIdContaining(String query, PageRequest pageRequest);

@@ -69,20 +69,21 @@ public class UserImpl implements UserService {
         if((email == null && edv == null) || pass == null)
             return new ResponseEntity<>("Campos nulos", HttpStatus.BAD_REQUEST);
         
-        Optional<UserEntity> userOptional = null;
+        Optional<UserEntity> userOptional = Optional.empty();
 
-        if(email != null) {
+        if (email != null && edv != null) {
+            userOptional = repo.findByEmailOrEDV(email, edv);
+        } else if (email != null) {
             userOptional = repo.findByEmailOrEDV(email, null);
-        }
-
-        if (edv != null) {
+        } else if (edv != null) {
             userOptional = repo.findByEmailOrEDV(null, edv);
         }
 
-        if(userOptional == null || userOptional.isEmpty()) 
+        if(userOptional.isEmpty()) 
             return new ResponseEntity<>("Usuário não encontrado", HttpStatus.NOT_FOUND);
 
         UserEntity user = userOptional.get();
+        System.out.println("\n\n\n\n\n\n\n\n\nBgl lá: " + user);
 
         JWTCreate jwtCreate = new JWTCreate();
         Token token = new Token();
