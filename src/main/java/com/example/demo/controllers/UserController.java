@@ -26,12 +26,12 @@ public class UserController {
         return created;
     }
 
-@GetMapping
-public ResponseEntity<Object> returnUser(
-    @RequestParam(required = false) String query,
-    @RequestParam(defaultValue = "0") int page,
-    @RequestParam(defaultValue = "10") int size
-) {
-    return ResponseEntity.ok(userService.getUsers(query, page, size));
-}
+    @GetMapping
+    public ResponseEntity<Object> returnUser(
+        @RequestParam(required = false) String query,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
+        return ResponseEntity.ok(userService.getUsers(query, page, size));
+    }
 }
