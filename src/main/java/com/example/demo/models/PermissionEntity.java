@@ -18,11 +18,10 @@ import jakarta.persistence.Table;
  *      1: Usuário que pode responder e perguntar.
  *      2: Usuário administrador do espaço, pode adicionar outros usuários, transformar em adm e apagar o espaço e as perguntas.
 */
-
 @Entity
-@Table( name = "tbPermission") // Mudando o nome da tabela 
+@Table(name = "tbPermission") // Mudando o nome da tabela
 public class PermissionEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long permissionId;
@@ -32,7 +31,7 @@ public class PermissionEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "space_id")
+    @JoinColumn(name = "space_id") // Chave estrangeira para a tabela tbSpace
     private SpaceEntity spaceId;
 
     public SpaceEntity getSpaceId() {
@@ -43,20 +42,21 @@ public class PermissionEntity {
         this.spaceId = spaceId;
     }
 
+    // Usar userId em vez de EDV para a chave estrangeira
     @ManyToOne
     @JoinColumn(name = "Usuário")
     private UserEntity EDV;
 
-    public UserEntity getEDV() {
-        return EDV;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setEDV(UserEntity EDV) {
-        this.EDV = EDV;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     @Column
-    private Integer permission; 
+    private Integer permission;
 
     public Integer getPermission() {
         return permission;
@@ -65,5 +65,6 @@ public class PermissionEntity {
     public void setPermission(Integer permission) {
         this.permission = permission;
     }
-
 }
+
+
