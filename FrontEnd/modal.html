@@ -10,76 +10,84 @@
 <body>
     
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginModal">Login</button>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RegisterModal">Registrar</button>
-
-
-    <section class="container">
-        <div class="container col-sm-12 col-md-10">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="/question/space">First Space</a></li>
-                <li class="list-group-item"><a href="/question/space">Second Space</a></li>
-                <li class="list-group-item"><a href="/question/space">Third Space</a></li>
-                <li class="list-group-item"><a href="/question/space">Four Space</a></li>
-            </ul>
-        </div>
-    </section>
-
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RegisterSpace">Espce</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RegisterPermission">Permission</button>
 
     
     <!-- Modal -->
-    <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+    <div class="modal fade" id="RegisterPermission" tabindex="-1" aria-labelledby="RegisterPermission" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="display: flex;flex-direction: column;">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h1 class="modal-title fs-5" id="LoginModalLabel">Login</h1>
+                    <h1 class="modal-title fs-5" id="RegisterPermission">Create Permission</h1>
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                        <label>User:</label>
-                        <input type="text" class="form-control" placeholder="EDV or Email" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
+                        <label>Email:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
                     </div>
                     <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                        <label>Password:</label>
-                        <input type="password" class="form-control" placeholder="Your Password" aria-label="Password" aria-describedby="basic-addon1"  style="width: 99%;">
+                        <label>Space ID:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
+                    </div>
+                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                        <label>Permission Name:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-primary">Create Permission</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="modal fade" id="RegisterModal" tabindex="-1" aria-labelledby="RegisterModalLabel" aria-hidden="true">
+    <div class="modal fade" id="RegisterSpace" tabindex="-1" aria-labelledby="RegisterSpace" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="display: flex;flex-direction: column;">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h1 class="modal-title fs-5" id="RegisterModalLabel">Sign up</h1>
+                    <h1 class="modal-title fs-5" id="RegisterSpace">Create Space</h1>
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                        <label>Username:</label>
+                        <label>Title:</label>
                         <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
-                    </div>
-                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                        <label>EDV:</label>
-                        <input type="text" class="form-control" placeholder="" aria-label="EDV" aria-describedby="basic-addon1"  style="width: 99%;">
-                    </div>
-                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                        <label>Email:</label>
-                        <input type="text" class="form-control" placeholder="" aria-label="Email" aria-describedby="basic-addon1"  style="width: 99%;">
-                    </div>
-                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                        <label>Password:</label>
-                        <input type="password" class="form-control" placeholder="" aria-label="Password" aria-describedby="basic-addon1"  style="width: 99%;">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Sign up</button>
+                    <button type="button" class="btn btn-primary">Create Space</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#RegisterQuestion">quest</button>
+
+
+    <div class="modal fade" id="RegisterQuestion" tabindex="-1" aria-labelledby="RegisterQuestion" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex;flex-direction: column;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="RegisterQuestion">Create Question</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                        <label>Title:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
+                    </div>
+                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                        <label>Text:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Create Space</button>
                 </div>
             </div>
         </div>
