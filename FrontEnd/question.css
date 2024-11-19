@@ -5,3 +5,7 @@
 .badge {
     background-color: rgb(94, 163, 190);
 }
+
+.list-group a {
+    text-decoration: none;
+}
