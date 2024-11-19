@@ -34,6 +34,10 @@ public class PermissionEntity {
     @JoinColumn(name = "space_id") // Chave estrangeira para a tabela tbSpace
     private SpaceEntity spaceId;
 
+    @ManyToOne
+    @JoinColumn(name ="Usuário") 
+    private UserEntity user;
+
     public SpaceEntity getSpaceId() {
         return spaceId;
     }
