@@ -41,18 +41,6 @@ nav {
     border: 0.5px solid rgb(211, 211, 211);
 }
 
-.btn-login, .btn-sign {
-    width: 100px;
-    border-radius: 5px;
-    border: 0.5px solid rgb(211, 211, 211);
-    padding: 3px;
-    opacity: 0.8;
-}
-
-.btn-sign {
-    background-color: #47c79c;
-}
-
 .search-img {
     width: 18px;
     margin-right: 10px;
@@ -110,6 +98,69 @@ input:focus {
 button:hover {
     opacity: 1;
 }
+
+.container {
+    margin-top: 100px;
+}
+
+.container-list {
+    margin-top: 80px;
+    border-radius: 3px;
+}
+
+.list-group-item a {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: black;
+}
+
+.list-group-item {
+    list-style: none;
+    margin-top: 15px;
+}
+
+.list-group-item li {
+    display: flex;
+    gap: 20px;
+}
+
+.title-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-create {
+    background-color: #47c79c;
+    width: 100px;
+    border-radius: 5px;
+    border: 0.5px solid rgb(211, 211, 211);
+    padding: 3px;
+    opacity: 0.8;
+}
+
+.btn-permission {
+    width: 150px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 0.5px solid rgb(211, 211, 211);
+    padding: 3px;
+    opacity: 0.8;
+}
+
+.list-group-item:hover {
+    background-color: rgb(238, 238, 238);
+    cursor: pointer;
+}
+
+
+
+
+
 
 
 /*------------------------------*/
