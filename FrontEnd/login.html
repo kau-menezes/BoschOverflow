@@ -17,11 +17,45 @@
             <label>Password:</label>
             <input type="password" class="form-control" placeholder="Your Password" aria-label="Password" aria-describedby="basic-addon1"  style="width: 99%;">
         </div>
-        <div class="flex">
-            <button type="button" class="btn btn-secondary">Sign up</button>
-            <button type="button" class="btn btn-primary">Login</button>
+        <div style="display: flex;justify-content: center;justify-items: center;flex-direction: column;">
+            <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#RegisterModal">Sign up</button> -->
+            <button type="button" class="btn btn-primary" style="width: 99%;margin: 1%;">Login</button>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#RegisterModal" style="display: flex;justify-content: center;">Sing up</a>
         </div>
     </section>
+
+
+    <div class="modal fade" id="RegisterModal" tabindex="-1" aria-labelledby="RegisterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex;flex-direction: column;">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5" id="RegisterModalLabel">Sign up</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                        <label>Username:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
+                    </div>
+                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                        <label>EDV:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="EDV" aria-describedby="basic-addon1"  style="width: 99%;">
+                    </div>
+                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                        <label>Email:</label>
+                        <input type="text" class="form-control" placeholder="" aria-label="Email" aria-describedby="basic-addon1"  style="width: 99%;">
+                    </div>
+                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                        <label>Password:</label>
+                        <input type="password" class="form-control" placeholder="" aria-label="Password" aria-describedby="basic-addon1"  style="width: 99%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
