@@ -162,6 +162,17 @@ button:hover {
     opacity: 0.8;
 }
 
+.btn-mais {
+    width: 150px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 0.5px solid rgb(211, 211, 211);
+    padding: 3px;
+    opacity: 0.8;
+    align-self: center;
+    margin-top: 40px;
+} 
+
 .list-group-item:hover {
     background-color: rgb(238, 238, 238);
     cursor: pointer;
