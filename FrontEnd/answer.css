@@ -2,3 +2,11 @@
     list-style: none;
     text-decoration: none;
 }
+
+.box-q {
+    border: 0.5px solid rgb(216, 216, 216);
+    padding: 25px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    line-height: 6px;
+}
