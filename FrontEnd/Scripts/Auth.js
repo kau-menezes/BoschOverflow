@@ -26,17 +26,16 @@ loginButton.addEventListener("click", async function () {
         };
         
         var data = await Login(httpMethod)
-        console.log(data.msg);
+        console.log(data.user);
         alert(data.msg)
 
         if (data.msg === "Usuário logado com sucesso!") {
             window.location.replace("http://127.0.0.1:5500/home.html");
-            sessionStorage.setItem("token", data.token)
-            console.log(data.token);
+            sessionStorage.setItem("userId", data.user.Id)
+            sessionStorage.setItem("userEDV", data.user.edv)
+            console.log(data.user);
             
         }
-
-
     })
     
 
