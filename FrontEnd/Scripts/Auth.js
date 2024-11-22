@@ -1,7 +1,6 @@
 var loginButton = document.getElementById("loginButtonUser")
 
 
-
 loginButton.addEventListener("click", async function () {
     var edv = document.getElementById("edv").value;
     var password = document.getElementById("userPassword").value;
