@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import com.example.demo.JWTCreate;
 import com.example.demo.dto.LoginDto.LoginDto;
 import com.example.demo.dto.LoginDto.LoginResponseDto;
+import com.example.demo.dto.LoginDto.userReturn;
 import com.example.demo.dto.Token;
 import com.example.demo.dto.UserDto.CreateUserDto;
 import com.example.demo.models.UserEntity;
@@ -83,7 +84,7 @@ public class UserImpl implements UserService {
             return new ResponseEntity<>("Usuário não encontrado", HttpStatus.NOT_FOUND);
 
         UserEntity user = userOptional.get();
-
+        System.out.println(user);
         JWTCreate jwtCreate = new JWTCreate();
         Token token = new Token();
         token.setId(user.getUserId());
@@ -98,7 +99,7 @@ public class UserImpl implements UserService {
 
             return ResponseEntity
             .status(HttpStatus.OK)
-            .body(new LoginResponseDto("Usuário logado com sucesso!", jwt));
+            .body(new LoginResponseDto("Usuário logado com sucesso!", new userReturn(user.getUserId(), user.getEDV())));
         }
     }
     
