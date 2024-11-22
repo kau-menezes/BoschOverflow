@@ -33,6 +33,7 @@ loginButton.addEventListener("click", async function () {
             window.location.replace("http://127.0.0.1:5500/home.html");
             sessionStorage.setItem("userId", data.user.Id)
             sessionStorage.setItem("userEDV", data.user.edv)
+            sessionStorage.setItem("userEDV", data.user.jwt)
             console.log(data.user);
             
         }
