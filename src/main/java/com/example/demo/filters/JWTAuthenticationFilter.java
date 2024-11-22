@@ -23,6 +23,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        String path = request.getRequestURI();
+        
+        if (path.startsWith("/user") || path.startsWith("/auth")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         
         var jwt = getJwt(request);
         if (jwt == null)

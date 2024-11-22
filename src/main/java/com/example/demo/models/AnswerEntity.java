@@ -59,11 +59,11 @@ public class AnswerEntity {
     */
 
     @ManyToOne
-    @JoinColumn( name = "user_id")
-    private UserEntity userId;
+    @JoinColumn( name = "EDV")
+    private UserEntity EDV;
 
-    public UserEntity getUserId() {
-        return userId;
+    public UserEntity getEDV() {
+        return EDV;
     }
 
 }

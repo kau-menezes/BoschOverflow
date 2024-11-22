@@ -52,7 +52,7 @@ public class SpaceImpl implements SpaceService {
         SpaceEntity savedSpace = repoSpace.save(spaceEntity);
 
         PermissionEntity permissionEntity = new PermissionEntity();
-        permissionEntity.setUser(userEntity); // Agora associamos o userId, que é a chave primária
+        permissionEntity.setEDV(userEntity); // Agora associamos o userId, que é a chave primária
         permissionEntity.setSpaceId(savedSpace);
         permissionEntity.setPermission(2); 
 
@@ -102,7 +102,7 @@ public class SpaceImpl implements SpaceService {
 
         permissionEntity.setPermission(addUserData.permission());
         permissionEntity.setSpaceId(spaceEntity);
-        permissionEntity.setUser(userEntity);
+        permissionEntity.setEDV(userEntity);
 
         repoPermission.save(permissionEntity);
 
@@ -145,7 +145,7 @@ public class SpaceImpl implements SpaceService {
         PermissionEntity permissionEntity; 
         if (permissionOpt.isEmpty()) {
             permissionEntity = new PermissionEntity();
-            permissionEntity.setUser(userEntity);
+            permissionEntity.setEDV(userEntity);
             permissionEntity.setSpaceId(spaceEntity);
             permissionEntity.setPermission(newPermission);
 

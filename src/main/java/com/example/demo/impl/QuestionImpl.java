@@ -57,7 +57,7 @@ public class QuestionImpl implements QuestionService{
         QuestionEntity question = new QuestionEntity();
         question.setQuestionTitle(newQuestionData.questionTitle());
         question.setQuestionText(newQuestionData.questionText());
-        question.setUserId(user);  // Associar o User
+        question.setEDV(user);  // Associar o User
         question.setSpaceId(space); // Associar o Space
     
         try {
