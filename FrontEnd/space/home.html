@@ -118,15 +118,17 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       <h1 class="modal-title fs-5" id="RegisterSpace">Create Space</h1>
                   </div>
-                  <div class="modal-body">
-                      <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                          <label>Title:</label>
-                          <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
-                      </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn-create">Create Space</button>
-                  </div>
+                  <form action="" method="post" id="formSpace">
+                    <div class="modal-body">
+                        <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                            <label>Title:</label>
+                            <input id="newSpace" type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btnSpace" type="submit" class="btn-create">Create Space</button>
+                    </div>
+                  </form>
               </div>
           </div>
       </div>
