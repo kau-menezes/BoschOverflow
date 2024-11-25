@@ -34,16 +34,18 @@ public class SecurityConfigurations {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authorize -> authorize
                 // Permite acesso livre ao endpoint de login
-                .requestMatchers("/auth/login").permitAll()
-                // Permite acesso livre a todos os endpoints GET
-                .requestMatchers(HttpMethod.GET, "/**").permitAll()
-                // Restringe todos os POST para ADMIN
-                .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
-                // Restringe PUT para ADMIN
-                .requestMatchers(HttpMethod.PUT, "/**").hasRole("ADMIN")
-                // Restringe DELETE para ADMIN
-                .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
-                // Qualquer outra requisição precisa de autenticação
+                .requestMatchers("/auth").permitAll()
+                .requestMatchers("/user").permitAll()
+                .requestMatchers("/question").permitAll()
+                // // Permite acesso livre a todos os endpoints GET
+                // .requestMatchers(HttpMethod.GET, "/**").permitAll()
+                // // Restringe todos os POST para ADMIN
+                // .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
+                // // Restringe PUT para ADMIN
+                // .requestMatchers(HttpMethod.PUT, "/**").hasRole("ADMIN")
+                // // Restringe DELETE para ADMIN
+                // .requestMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
+                // // Qualquer outra requisição precisa de autenticação
                 .anyRequest().authenticated())
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .build();

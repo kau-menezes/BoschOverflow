@@ -1,29 +1,36 @@
-var addForm = document.getElementById("createQuestion")
 var deleteForm = document.getElementById("deleteQuestion")
-var token = sessionStorage.getItem("token")
+var token = sessionStorage.getItem("userToken")
+var addBtn = document.getElementById("btnAdd")
 
-addForm.addEventListener("submit", function() {
+addBtn.addEventListener("click", function() {
 
-    var userId = sessionStorage.getItem("userId")
+    console.log('fala fi')
+
+    var userId = parseInt(sessionStorage.getItem("userId"))
 
     data = {
-        "questionTitle": addForm.elements['newQuestionTitle'],
-        "questionText": addForm.elements['newQuestionText'],
-        "spaceId": 4,
+        "questionTitle": document.getElementById("newQuestionTitle").value,
+        "questionText": document.getElementById('newQuestionText').value,
+        "spaceId": 7,
         "userId": userId
     }
 
     fetch("http://localhost:8080/question", 
         {
             headers: {
-                'Authorization': token
+                'Authorization': token,
+                'Access-Control-Allow-Origin' : "http://127.0.0.1:5500",
             },
             method: "POST",
             body: JSON.stringify(data)
     })
+    // .then(res => res.json())
+    .then(res => console.log(res))
 })
 
 deleteForm.addEventListener("submit", function() {
+
+    console.log('fala fi')
 
     var questionId = deleteForm.elements['questionId'].value
 
