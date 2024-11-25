@@ -16,6 +16,7 @@ import com.example.demo.dto.LoginDto.LoginDto;
 import com.example.demo.dto.LoginDto.LoginResponseDto;
 import com.example.demo.dto.LoginDto.userReturn;
 import com.example.demo.dto.Token;
+import com.example.demo.dto.msg;
 import com.example.demo.dto.UserDto.CreateUserDto;
 import com.example.demo.models.UserEntity;
 import com.example.demo.repositories.UserRepository;
@@ -58,7 +59,7 @@ public class UserImpl implements UserService {
 
         repo.save(user);
 
-        return new ResponseEntity<>("Usuário cadastrado com sucesso!", HttpStatus.CREATED);
+        return new ResponseEntity<>(new msg("Usuário cadastrado com sucesso!"), HttpStatus.CREATED);
     }
 
     @Override
@@ -84,7 +85,6 @@ public class UserImpl implements UserService {
             return new ResponseEntity<>("Usuário não encontrado", HttpStatus.NOT_FOUND);
 
         UserEntity user = userOptional.get();
-        System.out.println(user);
         JWTCreate jwtCreate = new JWTCreate();
         Token token = new Token();
         token.setId(user.getUserId());
@@ -96,10 +96,9 @@ public class UserImpl implements UserService {
         
         else {
             var jwt = "Bearer " + jwtCreate.get(token);
-
             return ResponseEntity
             .status(HttpStatus.OK)
-            .body(new LoginResponseDto("Usuário logado com sucesso!", new userReturn(user.getUserId(), user.getEDV())));
+            .body(new LoginResponseDto("Usuário logado com sucesso!", new userReturn(user.getUserId(), user.getEDV(), jwt)));
         }
     }
     

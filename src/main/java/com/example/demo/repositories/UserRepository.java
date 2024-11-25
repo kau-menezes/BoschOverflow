@@ -19,9 +19,10 @@ import com.example.demo.models.UserEntity;
 @SuppressWarnings("unused")
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>, PagingAndSortingRepository<UserEntity, Long>{
+    
     List<UserEntity> findByEmail(String email);
-    // List<UserEntity> findByEDV(String EDV);
-    Optional<UserEntity> findByEDV(String EDV);
+
+    List<UserEntity> findByEDV(String EDV);
 
     @Query("SELECT u FROM UserEntity u WHERE u.email = :email OR u.EDV = :EDV")
     Optional<UserEntity> findByEmailOrEDV(String email, String EDV);
