@@ -5,6 +5,8 @@ package com.example.demo.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import io.jsonwebtoken.Claims;
 
 /*      criamos uma DTO chamada ExtracedInfo (Informação Extraída) :          */
@@ -12,6 +14,7 @@ import io.jsonwebtoken.Claims;
 
 /*      no projeto do Trevisan, era chamado de Token, mas era confuso rs      */
 
+@Service
 public interface JWTService<T> {
         String get(T token);
         T validate(String jwt);

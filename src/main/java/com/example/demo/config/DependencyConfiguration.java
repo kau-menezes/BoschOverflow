@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.demo.JWTCreate;
 import com.example.demo.dto.Token;
+import com.example.demo.filters.JWTAuthenticationFilter;
 import com.example.demo.impl.AnswerImpl;
 import com.example.demo.impl.EncodeImpl;
 import com.example.demo.impl.QuestionImpl;
@@ -48,6 +49,11 @@ public class DependencyConfiguration {
     @Bean
     public JWTService<Token> jwtService() {
         return new JWTCreate();
+    }
+
+    @Bean
+    public JWTAuthenticationFilter JWTAuthenticationFilter() {
+        return new JWTAuthenticationFilter();
     }
 
 }
