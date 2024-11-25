@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(edv)
         console.log(spaceValue)
 
+        if(spaceValue ==  ""){
+            window.alert("O campo de nome não pode ser vazio")
+            return;
+        }
+
         const formData = {
             title: spaceValue,
             EDV: edv
@@ -26,48 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization:  data,
+                'Authorization':  data,
+                'Origin' : "http://127.0.0.1:5500"
             },
 
             body: JSON.stringify(formData) //converte o objeto em string json
         })
 
-        window.location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
+        if( spaceValue != ""){  
+            alert("Space criado com sucesso!")
+        }
+
+
+        location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
     })
 })
-
-// const createBtn = document.getElementById("btnSpace")
-// console.log(createBtn);
-
-
-// createBtn.addEventListener("click", createSpace())
-
-
-// async function createSpace() {
-//     var spaceValue = document.getElementById("newSpace").value;
-//     console.log(spaceValue);
-
-//     var edv = sessionStorage.getItem("userEDV");
-
-//     const formData = {
-//         "title": spaceValue,
-//         "EDV": edv
-//     }
-        
-//     var data = sessionStorage.getItem('token');
-    
-//     const response = await fetch('http://localhost:8080/spaces',{
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             Authorization:  data,
-//         },
-
-//         body: JSON.stringify(formData) //converte o objeto em string json
-//     })
-
-//     window.location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
-
-// }
 
 
