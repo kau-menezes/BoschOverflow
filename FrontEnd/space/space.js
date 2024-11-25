@@ -5,26 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     formSpace.addEventListener('submit', async(e) => {
         e.preventDefault();
 
-        //coletar os valores dos campos
         const spaceValue = document.getElementById('newSpace').value
 
-       
-
+    
         //FETCH API -ENVIAR OS DADOS VIS REQUEST(POST) PARA O SERVIDOR
-
-        //Armazenando o token com localstorage
-        // localStorage.setItem('nomedotoken', token);
-
-        // //Obtendo token com localstorage
-        // var token = localStorage.getItem("nomedotoken");
-
-        // //Armazenando o token com sessionStorage
-        // sessionStorage.setItem('chave', 'valor');
-
-        //Obtendo token com sessionStorage
-
+        
         var data = sessionStorage.getItem('token');
         var edv = sessionStorage.getItem("userEDV");
+        
+        console.log(data)
+        console.log(edv)
+        console.log(spaceValue)
 
         const formData = {
             title: spaceValue,
@@ -38,10 +29,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 Authorization:  data,
             },
 
-            body: JSON.stringify(formData), //converte o objeto em string json
+            body: JSON.stringify(formData) //converte o objeto em string json
         })
-         
+
+        window.location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
     })
 })
+
+// const createBtn = document.getElementById("btnSpace")
+// console.log(createBtn);
+
+
+// createBtn.addEventListener("click", createSpace())
+
+
+// async function createSpace() {
+//     var spaceValue = document.getElementById("newSpace").value;
+//     console.log(spaceValue);
+
+//     var edv = sessionStorage.getItem("userEDV");
+
+//     const formData = {
+//         "title": spaceValue,
+//         "EDV": edv
+//     }
+        
+//     var data = sessionStorage.getItem('token');
+    
+//     const response = await fetch('http://localhost:8080/spaces',{
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             Authorization:  data,
+//         },
+
+//         body: JSON.stringify(formData) //converte o objeto em string json
+//     })
+
+//     window.location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
+
+// }
 
 

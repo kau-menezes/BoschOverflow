@@ -1,7 +1,5 @@
 var loginButton = document.getElementById("loginButtonUser")
 
-
-
 loginButton.addEventListener("click", async function () {
     var edv = document.getElementById("edv").value;
     var password = document.getElementById("userPassword").value;
@@ -23,21 +21,20 @@ loginButton.addEventListener("click", async function () {
         'Origin' : "http://127.0.0.1:5500"
         },
         body: JSON.stringify(userData),
-        };
+    };
         
-        var data = await Login(httpMethod)
-        console.log(data.user);
-        alert(data.msg)
+    var data = await Login(httpMethod)
+    console.log(data.user);
+    alert(data.msg)
 
-        if (data.msg === "Usuário logado com sucesso!") {
-            window.location.replace("http://127.0.0.1:5500/home.html");
-            sessionStorage.setItem("userId", data.user.Id)
-            sessionStorage.setItem("userEDV", data.user.edv)
-            sessionStorage.setItem("userEDV", data.user.jwt)
-            console.log(data.user);
-            
-        }
-    })
+    if (data.msg === "Usuário logado com sucesso!") {
+        window.location.replace("http://127.0.0.1:5500/FrontEnd/space/home.html");
+        sessionStorage.setItem("userId", data.user.Id)
+        sessionStorage.setItem("userEDV", data.user.edv)
+        sessionStorage.setItem("userToken", data.user.token)
+        console.log(data.user);   
+    }
+})
     
 
 
