@@ -16,9 +16,7 @@ loginButton.addEventListener("click", async function () {
     const httpMethod = {
         method: 'POST',
         headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin' : "http://127.0.0.1:5500",
-        'Origin' : "http://127.0.0.1:5500"
+        'Content-Type': 'application/json'
         },
         body: JSON.stringify(userData),
     };
