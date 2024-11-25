@@ -18,8 +18,8 @@ addBtn.addEventListener("click", function() {
     fetch("http://localhost:8080/question", 
         {
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': token,
-                'Access-Control-Allow-Origin' : "http://127.0.0.1:5500",
             },
             method: "POST",
             body: JSON.stringify(data)
