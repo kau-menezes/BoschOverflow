@@ -51,7 +51,7 @@ async function searchSpace(query){
         
     }
 
-async function getSpace(httpMethod,query){
+async function getSpace(httpMethod, query){
     
     if (query === undefined) {
         const response = await fetch('http://localhost:8080/spaces', httpMethod)
