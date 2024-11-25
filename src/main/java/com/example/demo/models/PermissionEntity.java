@@ -35,8 +35,8 @@ public class PermissionEntity {
     private SpaceEntity spaceId;
 
     @ManyToOne
-    @JoinColumn(name ="EDV") 
-    private UserEntity EDV;
+    @JoinColumn(name ="user_id") 
+    private UserEntity user;
 
     public SpaceEntity getSpaceId() {
         return spaceId;
@@ -49,11 +49,11 @@ public class PermissionEntity {
     // Usar userId em vez de EDV para a chave estrangeira
 
     public UserEntity getEDV() {
-        return EDV;
+        return user;
     }
 
     public void setEDV(UserEntity EDV) {
-        this.EDV = EDV;
+        this.user = EDV;
     }
 
     @Column

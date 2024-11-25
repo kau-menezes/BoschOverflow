@@ -40,12 +40,12 @@ public class SpaceImpl implements SpaceService {
             return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
         }
 
-        Optional<UserEntity> userOpt = repoUser.findByEDV(newSpaceData.EDV());
+        var userOpt = repoUser.findByEDV(newSpaceData.EDV());
         if (userOpt.isEmpty()) {
             return new ResponseEntity<>("Usuário não encontrado!", HttpStatus.NOT_FOUND);
         }
-        UserEntity userEntity = userOpt.get();
-
+        UserEntity userEntity = userOpt.get(0);
+        System.out.println(userEntity.getEDV());
         SpaceEntity spaceEntity = new SpaceEntity();
         spaceEntity.setTitle(newSpaceData.title());
 
@@ -129,11 +129,11 @@ public class SpaceImpl implements SpaceService {
         UserEntity userEntity = user.get();
         SpaceEntity spaceEntity = space.get();
 
-        Optional<PermissionEntity> permissionOpt = repoPermission.findByEDVAndSpaceId(userEntity, spaceEntity);
+        Optional<PermissionEntity> permissionOpt = repoPermission.findByUserAndSpaceId(userEntity, spaceEntity);
 
         if (newPermission == 0) {
             if (permissionOpt.isPresent()) {
-                repoPermission.deleteByEDVAndSpaceId(userEntity, spaceEntity);
+                repoPermission.deleteByUserAndSpaceId(userEntity, spaceEntity);
                 return new ResponseEntity<>("Permissao removida com sucesso!", HttpStatus.OK);
             }
             else {

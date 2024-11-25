@@ -26,15 +26,15 @@ loginButton.addEventListener("click", async function () {
         };
         
         var data = await Login(httpMethod)
-        console.log(data.user);
+        console.log(data.user.jwt);
         alert(data.msg)
 
         if (data.msg === "Usuário logado com sucesso!") {
             window.location.replace("http://127.0.0.1:5500/home.html");
             sessionStorage.setItem("userId", data.user.Id)
             sessionStorage.setItem("userEDV", data.user.edv)
-            sessionStorage.setItem("userEDV", data.user.jwt)
-            console.log(data.user);
+            sessionStorage.setItem("userToken", data.user.token)
+            console.log(data.user.jwt);
             
         }
     })
