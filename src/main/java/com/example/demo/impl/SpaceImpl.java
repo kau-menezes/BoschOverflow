@@ -111,18 +111,25 @@ public class SpaceImpl implements SpaceService {
 
     @Override
     public ResponseEntity<Object> changeUserPermission(ChangeUserPermissionDto userData) {
-        if (userData.EDV() == null || userData.spaceId() == null || userData.newPermission() == null)
+        if (userData.EDV() == null || userData.spaceId() == null || userData.newPermission() == null){
+            System.err.println("erro de campo");    
             return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
+        }
 
+            
         var newPermission = Integer.parseInt(userData.newPermission());
 
-        if (newPermission != 0 && newPermission != 1 && newPermission != 2)
+        if (newPermission != 0 && newPermission != 1 && newPermission != 2){
+            System.err.println("erro de permissao");    
             return new ResponseEntity<>("Valores errados!", HttpStatus.BAD_REQUEST);
+
+        }
         
         var user = repoUser.findByEmailOrEDV(null, userData.EDV());
         var space = repoSpace.findById(userData.spaceId());
 
         if (user.isEmpty() || space.isEmpty()) {
+            System.err.println("erro de usuario ou espaço");    
             return new ResponseEntity<>("Usuário ou espaço não encontrado", HttpStatus.NOT_FOUND);
         }
 
@@ -130,7 +137,7 @@ public class SpaceImpl implements SpaceService {
         SpaceEntity spaceEntity = space.get();
 
         Optional<PermissionEntity> permissionOpt = repoPermission.findByUserAndSpaceId(userEntity, spaceEntity);
-
+        
         if (newPermission == 0) {
             if (permissionOpt.isPresent()) {
                 repoPermission.deleteByUserAndSpaceId(userEntity, spaceEntity);

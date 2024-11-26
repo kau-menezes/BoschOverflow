@@ -55,17 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const spaceValue = document.getElementById('spaceID').value
         const permissonValue = document.getElementById('permissionName').value
 
-        if(emailValue ==  "" || spaceValue == "" || permissonValue ==  ""){
+        if(edvValue ==  "" || spaceValue == "" || permissonValue ==  ""){
             window.alert("Os campos não podem ser vazios!")
             return;
         }
 
         const formData = {
             EDV: edvValue,
-            spaceID: spaceValue,
+            spaceId: spaceValue,
             newPermission: permissonValue
         }
 
+
+        console.log(edvValue)
+        console.log(spaceValue)
+        console.log(permissonValue)
 
         var data = sessionStorage.getItem('token');
 
@@ -79,7 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             body: JSON.stringify(formData) //converte o objeto em string json
         })
-        
+
+        if( spaceValue != ""){  
+            alert("Space criado com sucesso!")
+        }
+
         location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
     })
 })
