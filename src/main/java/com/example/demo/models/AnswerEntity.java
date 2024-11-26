@@ -58,11 +58,14 @@ public class AnswerEntity {
      * Conectando a Answer com o usuário que a criou
     */
 
-    @ManyToOne
-    @JoinColumn( name = "EDV")
-    private UserEntity EDV;
 
-    public UserEntity getEDV() {
+    private String EDV;
+
+    public void setEDV(String eDV) {
+        EDV = eDV;
+    }
+
+    public String getEDV() {
         return EDV;
     }
 

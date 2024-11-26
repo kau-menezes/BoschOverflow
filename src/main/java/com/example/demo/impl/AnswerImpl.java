@@ -36,6 +36,7 @@ public class AnswerImpl implements AnswerService {
 
         answer.setAnswerText(text);
         answer.setQuestionId(idQuestion);
+        answer.setEDV(newAnswerDto.EDV());
 
         repoAnswer.save(answer);
         
