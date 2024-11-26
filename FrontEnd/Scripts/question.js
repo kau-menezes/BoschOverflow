@@ -4,8 +4,11 @@ window.addEventListener("load",searchQuestions(sessionStorage.getItem("spaceId")
 var deleteForm = document.getElementById("deleteQuestion")
 var token = sessionStorage.getItem("userToken")
 var addBtn = document.getElementById("btnAdd")
+var lista = document.getElementById("list_questions")
 
-addBtn.addEventListener("click", function() {
+addBtn.addEventListener("click", () => createQuestion(token) )
+
+async function createQuestion(token) {
 
     console.log('fala fi')
 
@@ -21,19 +24,25 @@ addBtn.addEventListener("click", function() {
         {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json',
                 'Authorization': token,
-                'Access-Control-Allow-Origin' : "http://127.0.0.1:5500",
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
     })
-    // .then(res => res.json())
-    .then(res => console.log(res))
-})
+    console.log(response);
+    
+    const info = await response.text()
+    location.reload("http://127.0.0.1:5500/question.html");
+    console.log(info);
+    
 
-deleteBtn.addEventListener("click", function() {
+}
 
-    var questionId = document.getElementById("questionId").value
+deleteForm.addEventListener("submit", function() {
+
+    console.log('fala fi')
+
+    var questionId = deleteForm.elements['questionId'].value
 
     fetch("http://localhost:8080/question/" + questionId, 
         {
@@ -43,10 +52,8 @@ deleteBtn.addEventListener("click", function() {
             method: "DELETE"
         }
     )
-    .then(res => res.text())
-    .then(res => alert(res))
-    
-    document.getElementById('closeDeleteModal').click()
+    .then(res => res.json())
+    .then(res => console.log(res))
 })
 
 
