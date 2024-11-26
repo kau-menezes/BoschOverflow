@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.GetQuestion.GetQuestiondto;
+import com.example.demo.dto.GetQuestion.QuestionDto;
 import com.example.demo.dto.QuestionDto.CreateQuestionDto;
 import com.example.demo.dto.QuestionDto.DeleteQuestionDto;
 import com.example.demo.services.QuestionService;
@@ -37,8 +37,8 @@ public class QuestionController {
     }
 
     @GetMapping("/byId/{idQuestion}") // Pega uma questão por id
-    public ResponseEntity<Object> getQuestionById(@PathVariable GetQuestiondto questiondto) { 
-        var question = questionService.getQuestionById(questiondto);
+    public ResponseEntity<Object> getQuestionById(@PathVariable Long idQuestion) { 
+        var question = questionService.getQuestionById(idQuestion);
 
         return question;
     }

@@ -1,5 +1,6 @@
 package com.example.demo.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,9 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.example.demo.dto.GetQuestion.GetQuestiondto;
+import com.example.demo.dto.AnswerDto.AnswerDto;
+import com.example.demo.dto.GetQuestion.QuestionDto;
 import com.example.demo.dto.QuestionDto.CreateQuestionDto;
 import com.example.demo.dto.QuestionDto.DeleteQuestionDto;
+import com.example.demo.models.AnswerEntity;
 import com.example.demo.models.QuestionEntity;
 import com.example.demo.models.SpaceEntity;
 import com.example.demo.models.UserEntity;
@@ -100,18 +103,29 @@ public class QuestionImpl implements QuestionService{
 
 
     @Override
-    public ResponseEntity<Object> getQuestionById(GetQuestiondto questionData) {
-        if (questionData.id() == null) {
+    public ResponseEntity<Object> getQuestionById(Long idQuestion) {
+        if (idQuestion == null) {
             return new ResponseEntity<>("O ID da questão não pode ser nulo!", HttpStatus.BAD_REQUEST);
         }
     
-        Optional<QuestionEntity> questionOpt = repoQuestion.findById(questionData.id());
+        Optional<QuestionEntity> questionOpt = repoQuestion.findById(idQuestion);
     
         if (questionOpt.isEmpty()) {
             return new ResponseEntity<>("Questão não encontrada!", HttpStatus.NOT_FOUND);
         }
+
+        var question = questionOpt.get();
+
+        ArrayList<AnswerDto> answers = new ArrayList<>();
+
+        for (AnswerEntity answer : question.getAnswers()){
+
+            answers.add(new AnswerDto(answer.getAnswerText(), answer.getEDV().getUsername()));
+        }
+
+        var questionReturn = new QuestionDto(idQuestion, question.getQuestionTitle(), question.getQuestionText(), answers, question.getEDV().getUsername());
     
-        return new ResponseEntity<>(questionOpt.get(), HttpStatus.OK);
+        return new ResponseEntity<>(questionReturn, HttpStatus.OK);
     }
     
 }
