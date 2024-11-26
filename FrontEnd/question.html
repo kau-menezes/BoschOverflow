@@ -107,21 +107,19 @@
     <div class="modal fade" tabindex="-1" id="DeleteQuestion" aria-labelledby="DeleteQuestion" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
-            <form id="deleteQuestion">
-                <div class="modal-header" style="display: flex;flex-direction: column;">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h1 class="modal-title fs-5">Delete Question</h1>
+            <div class="modal-header" style="display: flex;flex-direction: column;">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h1 class="modal-title fs-5">Delete Question</h1>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3" style="display: flex;flex-direction: column;">
+                    <label>Question id:</label>
+                    <input type="text" id="questionId" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
                 </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3" style="display: flex;flex-direction: column;">
-                        <label>Question id:</label>
-                        <input type="text" name="questionId" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="width: 99%;">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn-delete">Delete Question</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnDelete" type="button" class="btn-delete">Delete Question</button>
+            </div>
           </div>
       </div>
     </div>

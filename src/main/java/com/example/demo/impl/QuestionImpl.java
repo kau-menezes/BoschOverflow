@@ -74,8 +74,7 @@ public class QuestionImpl implements QuestionService{
     
 
     @Override
-    public ResponseEntity<Object> deleteQuestion(DeleteQuestionDto questionData) {
-        Long idQuestion = questionData.questionId();
+    public ResponseEntity<Object> deleteQuestion(Long idQuestion) {
         if(repoQuestion.findById(idQuestion).isEmpty())
             return new ResponseEntity<>("Questao não encontrada no banco", HttpStatus.BAD_REQUEST);
 

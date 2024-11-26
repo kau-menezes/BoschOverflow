@@ -1,10 +1,10 @@
-var deleteForm = document.getElementById("deleteQuestion")
 var token = sessionStorage.getItem("userToken")
 var addBtn = document.getElementById("btnAdd")
+var deleteBtn = document.getElementById("btnDelete")
+
+
 
 addBtn.addEventListener("click", function() {
-
-    console.log('fala fi')
 
     var userId = parseInt(sessionStorage.getItem("userId"))
 
@@ -28,11 +28,9 @@ addBtn.addEventListener("click", function() {
     .then(res => console.log(res))
 })
 
-deleteForm.addEventListener("submit", function() {
+deleteBtn.addEventListener("click", function() {
 
-    console.log('fala fi')
-
-    var questionId = deleteForm.elements['questionId'].value
+    var questionId = document.getElementById("questionId").value
 
     fetch("http://localhost:8080/question/" + questionId, 
         {
@@ -45,3 +43,4 @@ deleteForm.addEventListener("submit", function() {
     .then(res => res.json())
     .then(res => console.log(res))
 })
+
