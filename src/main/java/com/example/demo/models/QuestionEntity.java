@@ -85,7 +85,15 @@ public class QuestionEntity {
         return EDV;
     }
 
+<<<<<<< HEAD
     @OneToMany(mappedBy = "questionId", fetch = FetchType.LAZY)
+=======
+        /*
+     * Conectando a pergunta com suas respostas // Feito na Integração back front *
+    */
+
+    @OneToMany(mappedBy = "questionId")
+>>>>>>> d2c08bb7b4b2ff5a66153733d1a16a226c157040
     private List<AnswerEntity> answers;
 
     public List<AnswerEntity> getAnswers() {

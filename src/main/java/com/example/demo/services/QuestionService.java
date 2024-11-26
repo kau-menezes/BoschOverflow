@@ -16,7 +16,7 @@ import com.example.demo.models.QuestionEntity;
 
 public interface QuestionService {
     ResponseEntity<Object> createQuestion(CreateQuestionDto newQuestionData);
-    ResponseEntity<Object> deleteQuestion(DeleteQuestionDto questionData);
+    ResponseEntity<Object> deleteQuestion(Long questionData);
     List<QuestionEntity> getAllQuestions(Long spaceId, int page, int size);
     ResponseEntity<Object> getQuestionById(Long idQuestion);
 }

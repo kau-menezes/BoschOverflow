@@ -51,8 +51,9 @@ public class QuestionController {
     }
 
     @DeleteMapping("/{questionId}")
-    public ResponseEntity<Object> deleteQuestion(@PathVariable DeleteQuestionDto data) {
-        var deleted = questionService.deleteQuestion(data);
+    public ResponseEntity<Object> deleteQuestion(@PathVariable Long questionId) {
+
+        var deleted = questionService.deleteQuestion(questionId);
 
         return deleted;
     }
