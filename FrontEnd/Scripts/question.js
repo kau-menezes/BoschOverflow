@@ -7,7 +7,10 @@ addBtn.addEventListener("click", function() {
     console.log('fala fi')
 
     var userId = parseInt(sessionStorage.getItem("userId"))
-
+    console.log(document.getElementById("newQuestionTitle").value);
+    console.log(document.getElementById('newQuestionText').value);
+    
+    
     data = {
         "questionTitle": document.getElementById("newQuestionTitle").value,
         "questionText": document.getElementById('newQuestionText').value,
@@ -19,7 +22,6 @@ addBtn.addEventListener("click", function() {
         {
             headers: {
                 'Authorization': token,
-                'Access-Control-Allow-Origin' : "http://127.0.0.1:5500",
             },
             method: "POST",
             body: JSON.stringify(data)

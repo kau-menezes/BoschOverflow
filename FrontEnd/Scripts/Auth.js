@@ -26,7 +26,7 @@ loginButton.addEventListener("click", async function () {
     alert(data.msg)
 
     if (data.msg === "Usuário logado com sucesso!") {
-        window.location.replace("http://127.0.0.1:5500/FrontEnd/space/home.html");
+        window.location.replace("http://127.0.0.1:5500/home.html");
         sessionStorage.setItem("userId", data.user.Id)
         sessionStorage.setItem("userEDV", data.user.edv)
         sessionStorage.setItem("userToken", data.user.token)

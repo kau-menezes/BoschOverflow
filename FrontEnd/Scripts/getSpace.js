@@ -4,10 +4,15 @@ const lista = document.getElementById("list_spaces")
 
 const search = document.getElementById("searchSpace")
 const lupa = document.getElementById("lupa")
+const links = document.querySelectorAll("a.list-group-item")
+
+
+    
+
 // search.addEventListener("change",searchSpace(search.value))
 
 async function searchSpace(query){
-    
+
     const httpMethod = {
         method: 'GET',
         headers: {
@@ -29,7 +34,8 @@ async function searchSpace(query){
             div.setAttribute("class", "box-text")
 
             const id = document.createElement("p")
-            id.textContent = `ID: ${element.spaceId}`;
+            id.setAttribute("class", "id")
+            id.textContent = `${element.spaceId}`;
 
             const barra = document.createElement("p")
             barra.textContent = "|";
@@ -42,9 +48,15 @@ async function searchSpace(query){
             div.appendChild(nameSpace)
 
             li.appendChild(div)
-
+            
             a.appendChild(li)
-
+            a.addEventListener("click",(event) => {
+                event.preventDefault()
+                sessionStorage.setItem("spaceId",a.querySelector("li .box-text .id").textContent)
+                console.log(a.querySelector("li .box-text .id").textContent);
+                window.location.replace("http://127.0.0.1:5500/question.html");
+            })
+            
             lista.appendChild(a)
             
         });
