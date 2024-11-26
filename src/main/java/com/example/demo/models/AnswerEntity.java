@@ -67,7 +67,7 @@ public class AnswerEntity {
     }
 
     public UserEntity getEDV() {
-        return user;
+        return EDV;
     }
 
 }

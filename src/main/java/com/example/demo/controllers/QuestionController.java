@@ -37,8 +37,8 @@ public class QuestionController {
     }
 
     @GetMapping("/byId/{idQuestion}") // Pega uma questão por id
-    public ResponseEntity<Object> getQuestionById(@PathVariable GetQuestiondto questiondto) { 
-        var question = questionService.getQuestionById(questiondto);
+    public ResponseEntity<Object> getQuestionById(@PathVariable Long idQuestion) { 
+        var question = questionService.getQuestionById(idQuestion);
 
         return question;
     }
@@ -51,8 +51,9 @@ public class QuestionController {
     }
 
     @DeleteMapping("/{questionId}")
-    public ResponseEntity<Object> deleteQuestion(@PathVariable DeleteQuestionDto data) {
-        var deleted = questionService.deleteQuestion(data);
+    public ResponseEntity<Object> deleteQuestion(@PathVariable Long questionId) {
+
+        var deleted = questionService.deleteQuestion(questionId);
 
         return deleted;
     }

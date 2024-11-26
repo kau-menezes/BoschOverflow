@@ -74,8 +74,7 @@ public class QuestionImpl implements QuestionService{
     
 
     @Override
-    public ResponseEntity<Object> deleteQuestion(DeleteQuestionDto questionData) {
-        Long idQuestion = questionData.questionId();
+    public ResponseEntity<Object> deleteQuestion(Long idQuestion) {
         if(repoQuestion.findById(idQuestion).isEmpty())
             return new ResponseEntity<>("Questao não encontrada no banco", HttpStatus.BAD_REQUEST);
 
@@ -100,12 +99,12 @@ public class QuestionImpl implements QuestionService{
 
 
     @Override
-    public ResponseEntity<Object> getQuestionById(GetQuestiondto questionData) {
-        if (questionData.id() == null) {
+    public ResponseEntity<Object> getQuestionById(Long idQuestion) {
+        if (idQuestion == null) {
             return new ResponseEntity<>("O ID da questão não pode ser nulo!", HttpStatus.BAD_REQUEST);
         }
     
-        Optional<QuestionEntity> questionOpt = repoQuestion.findById(questionData.id());
+        Optional<QuestionEntity> questionOpt = repoQuestion.findById(idQuestion);
     
         if (questionOpt.isEmpty()) {
             return new ResponseEntity<>("Questão não encontrada!", HttpStatus.NOT_FOUND);
