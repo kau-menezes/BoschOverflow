@@ -2,8 +2,6 @@ var token = sessionStorage.getItem("userToken")
 var addBtn = document.getElementById("btnAdd")
 var deleteBtn = document.getElementById("btnDelete")
 
-
-
 addBtn.addEventListener("click", function() {
 
     var userId = parseInt(sessionStorage.getItem("userId"))
@@ -24,8 +22,9 @@ addBtn.addEventListener("click", function() {
             method: "POST",
             body: JSON.stringify(data)
     })
-    // .then(res => res.json())
-    .then(res => console.log(res))
+    .then(res => res.text())
+    .then(res => alert(res))
+    document.getElementById('closeDeleteModal').click()
 })
 
 deleteBtn.addEventListener("click", function() {
@@ -40,7 +39,8 @@ deleteBtn.addEventListener("click", function() {
             method: "DELETE"
         }
     )
-    .then(res => res.json())
-    .then(res => console.log(res))
+    .then(res => res.text())
+    .then(res => alert(res))
+    
+    document.getElementById('closeDeleteModal').click()
 })
-
