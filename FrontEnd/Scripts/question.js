@@ -32,6 +32,7 @@ async function createQuestion(token) {
     console.log(response);
     
     const info = await response.text()
+    location.reload("http://127.0.0.1:5500/question.html");
     console.log(info);
     
 
