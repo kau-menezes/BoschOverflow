@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const spaceValue = document.getElementById('newSpace').value
         //FETCH API -ENVIAR OS DADOS VIS REQUEST(POST) PARA O SERVIDOR
         
-        var data = sessionStorage.getItem('token');
+        var data = sessionStorage.getItem('userToken');
         var edv = sessionStorage.getItem("userEDV");
         
         console.log(data)
@@ -30,8 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization':  data,
-                'Origin' : "http://127.0.0.1:5500"
+                'Authorization':  data
             },
 
             body: JSON.stringify(formData) //converte o objeto em string json
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
+        location.reload("http://127.0.0.1:5500/home.html");
     })
 
 

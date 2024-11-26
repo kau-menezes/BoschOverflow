@@ -19,6 +19,7 @@ public class AnswerController {
 
     @PostMapping
     public ResponseEntity<Object> postAnswer(@RequestBody CreateAnswerDto data) {
+        System.err.println(data);
         var created = answerService.createAnswer(data);
 
         return created;

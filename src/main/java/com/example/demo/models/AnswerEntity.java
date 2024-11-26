@@ -28,7 +28,7 @@ public class AnswerEntity {
     }
 
     @Column
-    public String answerText;
+    private String answerText;
 
     public String getAnswerText() {
         return answerText;
@@ -59,11 +59,15 @@ public class AnswerEntity {
     */
 
     @ManyToOne
-    @JoinColumn( name = "EDV")
-    private UserEntity EDV;
+    @JoinColumn( name = "user_id")
+    private UserEntity user;
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
     public UserEntity getEDV() {
-        return EDV;
+        return user;
     }
 
 }
