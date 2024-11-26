@@ -1,6 +1,6 @@
 window.addEventListener("load",searchSpace())
 
-
+const lista = document.getElementById("list_spaces")
 
 const search = document.getElementById("searchSpace")
 const lupa = document.getElementById("lupa")
@@ -15,10 +15,37 @@ async function searchSpace(query){
             }
         };
         var spaces = await getSpace(httpMethod,query);
+        console.log(spaces);
         
         spaces.forEach(element => {
+            
+            const a = document.createElement("a")
+            a.href = "question.html"
+            a.setAttribute("class", "list-group-item")
+
+            const li = document.createElement("li")
+
             const div = document.createElement("div")
-            div.className("")
+            div.setAttribute("class", "box-text")
+
+            const id = document.createElement("p")
+            id.textContent = `ID: ${element.spaceId}`;
+
+            const barra = document.createElement("p")
+            barra.textContent = "|";
+
+            const nameSpace = document.createElement("p")
+            nameSpace.textContent = element.title;
+
+            div.appendChild(id)
+            div.appendChild(barra)
+            div.appendChild(nameSpace)
+
+            li.appendChild(div)
+
+            a.appendChild(li)
+
+            lista.appendChild(a)
             
         });
         
