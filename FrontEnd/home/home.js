@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formSpace = document.getElementById('formSpace');
-    const formPermission = document.getElementById('formPermission');
     
     //add um evento submit ao formulario
     formSpace.addEventListener('submit', async(e) => {
@@ -44,29 +43,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
     })
+})
 
-
-        //add um evento submit ao formulario
+    //Permission
+document.addEventListener('DOMContentLoaded', () => {
+    const formPermission = document.getElementById('formPermission');
     formPermission.addEventListener('submit', async(e) => {
         e.preventDefault();
 
-        const emailValue = document.getElementById('email').value
+        const edvValue = document.getElementById('edv').value
         const spaceValue = document.getElementById('spaceID').value
         const permissonValue = document.getElementById('permissionName').value
 
-        //FETCH API -ENVIAR OS DADOS VIS REQUEST(POST) PARA O SERVIDOR
-
-
         if(emailValue ==  "" || spaceValue == "" || permissonValue ==  ""){
-            window.alert("O campo de nome não pode ser vazio")
+            window.alert("Os campos não podem ser vazios!")
             return;
         }
 
         const formData = {
-            email: emailValue,
+            EDV: edvValue,
             spaceID: spaceValue,
             newPermission: permissonValue
         }
+
+
+        var data = sessionStorage.getItem('token');
 
         const response = await fetch('http://localhost:8080/permission',{
             method: 'POST',
@@ -78,12 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             body: JSON.stringify(formData) //converte o objeto em string json
         })
-
-        if( spaceValue != ""){  
-            alert("Permissao criado com sucesso!")
-        }
-
-
+        
         location.reload("http://127.0.0.1:5500/FrontEnd/space/home.html");
     })
 })

@@ -111,7 +111,7 @@ public class SpaceImpl implements SpaceService {
 
     @Override
     public ResponseEntity<Object> changeUserPermission(ChangeUserPermissionDto userData) {
-        if (userData.email() == null || userData.spaceId() == null || userData.newPermission() == null)
+        if (userData.EDV() == null || userData.spaceId() == null || userData.newPermission() == null)
             return new ResponseEntity<>("Campos vazios!", HttpStatus.BAD_REQUEST);
 
         var newPermission = Integer.parseInt(userData.newPermission());
@@ -119,7 +119,7 @@ public class SpaceImpl implements SpaceService {
         if (newPermission != 0 && newPermission != 1 && newPermission != 2)
             return new ResponseEntity<>("Valores errados!", HttpStatus.BAD_REQUEST);
         
-        var user = repoUser.findByEmailOrEDV(userData.email(), null);
+        var user = repoUser.findByEmailOrEDV(null, userData.EDV());
         var space = repoSpace.findById(userData.spaceId());
 
         if (user.isEmpty() || space.isEmpty()) {
@@ -140,7 +140,6 @@ public class SpaceImpl implements SpaceService {
                 return new ResponseEntity<>("Permissao não encontrada", HttpStatus.NOT_FOUND);
             }
         }
-        
 
         PermissionEntity permissionEntity; 
         if (permissionOpt.isEmpty()) {
