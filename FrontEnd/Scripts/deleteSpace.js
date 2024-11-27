@@ -8,7 +8,6 @@ const httpMethod = {
         'Authorization' : token
     }
 };
-console.log(httpMethod);
 
 button.addEventListener("click", () => deleteSpace(httpMethod))
 

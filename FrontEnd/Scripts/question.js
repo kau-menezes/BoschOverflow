@@ -33,8 +33,6 @@ async function createQuestion(token) {
     
     const info = await response.text()
     location.reload("http://127.0.0.1:5500/question.html");
-    console.log(info);
-    
 
 }
 
@@ -53,14 +51,12 @@ deleteForm.addEventListener("submit", function() {
         }
     )
     .then(res => res.json())
-    .then(res => console.log(res))
 })
 
 
 
 async function searchQuestions(spaceId){
 
-    console.log("oi")
 
     const httpMethod = {
         method: 'GET',
@@ -70,10 +66,8 @@ async function searchQuestions(spaceId){
         };
         var response = await fetch("http://localhost:8080/question/" + spaceId, httpMethod );
         var questions = await response.json()
-        console.log(questions)
 
         questions.forEach(question => {
-        console.log(question);
         
             const a = document.createElement("a")
 

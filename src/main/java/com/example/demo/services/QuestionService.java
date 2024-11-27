@@ -3,10 +3,7 @@ package com.example.demo.services;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-
-import com.example.demo.dto.GetQuestion.QuestionDto;
 import com.example.demo.dto.QuestionDto.CreateQuestionDto;
-import com.example.demo.dto.QuestionDto.DeleteQuestionDto;
 import com.example.demo.models.QuestionEntity;
 
 /*

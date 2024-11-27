@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import com.example.demo.dto.AnswerDto.AnswerDto;
 import com.example.demo.dto.GetQuestion.QuestionDto;
 import com.example.demo.dto.QuestionDto.CreateQuestionDto;
-import com.example.demo.dto.QuestionDto.DeleteQuestionDto;
 import com.example.demo.models.AnswerEntity;
 import com.example.demo.models.QuestionEntity;
 import com.example.demo.models.SpaceEntity;

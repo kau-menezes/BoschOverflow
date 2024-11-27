@@ -13,7 +13,6 @@ const questionText = document.getElementById("questionText");
 button.addEventListener("click", () => createAnswer(token));
 
 async function createAnswer(token) {
-  alert(answer.value);
 
   data = {
     text: answer.value,
@@ -31,10 +30,8 @@ async function createAnswer(token) {
 
   const info = await response.text();
   location.reload("http://127.0.0.1:5500/answer.html");
-  console.log(info);
 }
   async function searchAnswers(questionId) {
-    console.log("oi");
 
     const httpMethod = {
       method: "GET",
@@ -47,12 +44,10 @@ async function createAnswer(token) {
       httpMethod
     );
     var info = await response.json();
-    console.log(info);
 
     questionTitle.textContent = `${info.questionTitle}`;
     questionText.textContent = `${info.questionText}`;
     info.answers.forEach((answer) => {
-      console.log(answer);
 
       const li = document.createElement("li");
       li.setAttribute(

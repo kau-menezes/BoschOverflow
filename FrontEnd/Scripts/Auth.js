@@ -3,8 +3,7 @@ var loginButton = document.getElementById("loginButtonUser")
 loginButton.addEventListener("click", async function () {
     var edv = document.getElementById("edv").value;
     var password = document.getElementById("userPassword").value;
-    console.log(edv);
-    console.log(password);
+
     
 
     const userData = {
@@ -22,7 +21,6 @@ loginButton.addEventListener("click", async function () {
     };
         
     var data = await Login(httpMethod)
-    console.log(data.user);
     alert(data.msg)
 
     if (data.msg === "Usuário logado com sucesso!") {
@@ -30,7 +28,6 @@ loginButton.addEventListener("click", async function () {
         sessionStorage.setItem("userId", data.user.Id)
         sessionStorage.setItem("userEDV", data.user.edv)
         sessionStorage.setItem("userToken", data.user.token)
-        console.log(data.user);   
     }
 })
     

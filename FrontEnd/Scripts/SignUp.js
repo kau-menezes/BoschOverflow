@@ -25,7 +25,6 @@ SignUp.addEventListener("click", async function () {
         };
         
         var data = await createUser(httpMethod)
-        console.log(data.msg);
         alert(data.msg)
     })
 

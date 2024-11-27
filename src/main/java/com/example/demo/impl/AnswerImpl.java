@@ -9,7 +9,6 @@ import com.example.demo.models.AnswerEntity;
 import com.example.demo.models.QuestionEntity;
 import com.example.demo.repositories.AnswerRepository;
 import com.example.demo.repositories.QuestionRepository;
-import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.AnswerService;
 
 public class AnswerImpl implements AnswerService {

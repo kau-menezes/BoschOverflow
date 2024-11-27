@@ -20,7 +20,6 @@ async function searchSpace(query){
             }
         };
         var spaces = await getSpace(httpMethod,query);
-        console.log(spaces);
         
         spaces.forEach(element => {
             
