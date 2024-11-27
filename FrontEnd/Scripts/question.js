@@ -1,4 +1,5 @@
 window.addEventListener("load",searchQuestions(sessionStorage.getItem("spaceId")));
+var deleteBtn = document.getElementById("btnDelete")
 
 
 var deleteForm = document.getElementById("deleteQuestion")
@@ -36,23 +37,23 @@ async function createQuestion(token) {
 
 }
 
-deleteForm.addEventListener("submit", function() {
+deleteBtn.addEventListener("click", function() {
 
-    console.log('fala fi')
-
-    var questionId = deleteForm.elements['questionId'].value
-
+    var questionId = document.getElementById("questionId").value
+    var token = sessionStorage.getItem("userToken")
     fetch("http://localhost:8080/question/" + questionId, 
         {
+            method: "DELETE",
             headers: {
                 'Authorization': token
             },
-            method: "DELETE"
         }
     )
-    .then(res => res.json())
+    .then(res => res.text())
+    .then(res => alert(res))
+    document.getElementById('closeDeleteModal').click()
+    location.reload("http://127.0.0.1:5500/question.html");
 })
-
 
 
 async function searchQuestions(spaceId){
